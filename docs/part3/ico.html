@@ -109,16 +109,16 @@
 
     
         
-        <li class="header">Part 1 - Running QTUM</li>
+        <li class="header">Part 1 - Running RECRYPT</li>
         
         
     
-        <li class="chapter " data-level="2.1" data-path="../part1/qtum-docker.html">
+        <li class="chapter " data-level="2.1" data-path="../part1/recrypt-docker.html">
             
-                <a href="../part1/qtum-docker.html">
+                <a href="../part1/recrypt-docker.html">
             
                     
-                    QTUM Docker Container
+                    RECRYPT Docker Container
             
                 </a>
             
@@ -127,9 +127,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="2.1.1" data-path="../part1/qtum-docker.html">
+        <li class="chapter " data-level="2.1.1" data-path="../part1/recrypt-docker.html">
             
-                <a href="../part1/qtum-docker.html#running-regtest-mode">
+                <a href="../part1/recrypt-docker.html#running-regtest-mode">
             
                     
                     Tip: regtest Mode
@@ -140,9 +140,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.1.2" data-path="../part1/qtum-docker.html">
+        <li class="chapter " data-level="2.1.2" data-path="../part1/recrypt-docker.html">
             
-                <a href="../part1/qtum-docker.html#new-blocks-on-demand">
+                <a href="../part1/recrypt-docker.html#new-blocks-on-demand">
             
                     
                     Tip: New Blocks On Demand
@@ -153,9 +153,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.1.3" data-path="../part1/qtum-docker-codenvy/">
+        <li class="chapter " data-level="2.1.3" data-path="../part1/recrypt-docker-codenvy/">
             
-                <a href="../part1/qtum-docker-codenvy/">
+                <a href="../part1/recrypt-docker-codenvy/">
             
                     
                     Docker In Browser
@@ -299,7 +299,7 @@
                 <a href="../part2/erc20-js.html">
             
                     
-                    ERC20 With QtumJS
+                    ERC20 With RecryptJS
             
                 </a>
             
@@ -501,7 +501,7 @@
 </li>
 <li>The crowdsale finalizing agent.
 </li></ul>
-<p>The full example can be found in the repo <a href="https://github.com/qtumproject/qtumjs-crowdsale-cli" target="_blank">qtumproject/qtumjs-crowdsale-cli</a>.</p><h2 id="tldr"><a name="tldr" class="plugin-anchor" href="#tldr"><i class="fa fa-link" aria-hidden="true"></i></a>TL;DR</h2><p>An outline of the crowdsale process:</p><ol><li><a href="#the-ico-design">Design the crowdsale and token allocation</a>.
+<p>The full example can be found in the repo <a href="https://github.com/recryptproject/recryptjs-crowdsale-cli" target="_blank">recryptproject/recryptjs-crowdsale-cli</a>.</p><h2 id="tldr"><a name="tldr" class="plugin-anchor" href="#tldr"><i class="fa fa-link" aria-hidden="true"></i></a>TL;DR</h2><p>An outline of the crowdsale process:</p><ol><li><a href="#the-ico-design">Design the crowdsale and token allocation</a>.
 </li>
 <li><a href="#deploy-library">Deploy the SafeMathLib library</a>.
 </li>
@@ -519,13 +519,13 @@
 <li><a href="#failure-refund-the-crowdsale">If failed, refund</a>.
 </li></ul>
 </li></ol>
-<p>For a quick overview of the all the commands run for the whole crowdsale process, look at <a href="https://github.com/qtumproject/qtumjs-crowdsale-cli/blob/master/recipe.sh" target="_blank">recipe.sh</a>.</p><p>The NodeJS script that interacts with the crowdsale is <a href="https://github.com/qtumproject/qtumjs-crowdsale-cli/blob/master/index.js" target="_blank">index.js</a>.</p><p>An sample of the deployment data of the contracts involved: <a href="https://github.com/qtumproject/qtumjs-crowdsale-cli/blob/master/solar.development.json.example" target="_blank">solar.development.json</a>.</p><h1 id="the-ico-design"><a name="the-ico-design" class="plugin-anchor" href="#the-ico-design"><i class="fa fa-link" aria-hidden="true"></i></a>The ICO Design</h1><p>The TokenMarketNet contracts cover many common scenarios for ICOs, providing support for different types of tokens, different caps, and different pricing strategies.</p><p>Our crowdsale will have the following configuration:</p><ul><li>BurnableCrowdsaleToken
+<p>For a quick overview of the all the commands run for the whole crowdsale process, look at <a href="https://github.com/recryptproject/recryptjs-crowdsale-cli/blob/master/recipe.sh" target="_blank">recipe.sh</a>.</p><p>The NodeJS script that interacts with the crowdsale is <a href="https://github.com/recryptproject/recryptjs-crowdsale-cli/blob/master/index.js" target="_blank">index.js</a>.</p><p>An sample of the deployment data of the contracts involved: <a href="https://github.com/recryptproject/recryptjs-crowdsale-cli/blob/master/solar.development.json.example" target="_blank">solar.development.json</a>.</p><h1 id="the-ico-design"><a name="the-ico-design" class="plugin-anchor" href="#the-ico-design"><i class="fa fa-link" aria-hidden="true"></i></a>The ICO Design</h1><p>The TokenMarketNet contracts cover many common scenarios for ICOs, providing support for different types of tokens, different caps, and different pricing strategies.</p><p>Our crowdsale will have the following configuration:</p><ul><li>BurnableCrowdsaleToken
 </li></ul>
 <p>This is essentially a mintable token. It also provides the option to burn tokens, for example if you&apos;d like to lower the percentage of tokens the team holds if the crowdsale did not reach the maximum sales goal.</p><ul><li>FlatPricing
 </li></ul>
 <p>Everyone that participates in the public sale gets the same price. There are other pricing strategies like <a href="https://github.com/TokenMarketNet/ico/blob/master/contracts/TokenTranchePricing.sol" target="_blank">TokenTranchePricing</a> or <a href="https://github.com/TokenMarketNet/ico/blob/master/contracts/MilestonePricing.sol" target="_blank">MilestonePricing</a>.</p><p>The prices are specified in satoshi (10^-8) per token.</p><ul><li>MintedTokenCappedCrowdsale
 </li></ul>
-<p>This is a crowdsale capped by number of tokens sold.</p><h2 id="supply-allocation-and-pricing"><a name="supply-allocation-and-pricing" class="plugin-anchor" href="#supply-allocation-and-pricing"><i class="fa fa-link" aria-hidden="true"></i></a>Supply, Allocation, And Pricing</h2><p>Let&apos;s now determine the parameters for this crowdsale. For simplicity, we&apos;ll assume that qtum&apos;s price is $100 USD.</p><p>The name:</p><ul><li>Token name: MyToken
+<p>This is a crowdsale capped by number of tokens sold.</p><h2 id="supply-allocation-and-pricing"><a name="supply-allocation-and-pricing" class="plugin-anchor" href="#supply-allocation-and-pricing"><i class="fa fa-link" aria-hidden="true"></i></a>Supply, Allocation, And Pricing</h2><p>Let&apos;s now determine the parameters for this crowdsale. For simplicity, we&apos;ll assume that recrypt&apos;s price is $100 USD.</p><p>The name:</p><ul><li>Token name: MyToken
 </li>
 <li>Token symbol: MTK
 </li>
@@ -541,33 +541,33 @@
 </li>
 <li>Public ICO: 60%
 </li></ul>
-<p>The prices are:</p><ul><li><p>Presale</p><ul><li>Price: 50000 QTUM Satoshi ($0.05 in fiat)
+<p>The prices are:</p><ul><li><p>Presale</p><ul><li>Price: 50000 RECRYPT Satoshi ($0.05 in fiat)
 </li>
 <li>Presale tokens: 10,000,000
 </li>
-<li>2000 MTK : 1 QTUM
+<li>2000 MTK : 1 RECRYPT
 </li>
-<li>Presale amount: 5000 QTUM ($500,000)
+<li>Presale amount: 5000 RECRYPT ($500,000)
 </li></ul>
 </li>
-<li><p>Public ICO</p><ul><li>Price: 100000 QTUM Satoshi ($0.1 in fiat)
+<li><p>Public ICO</p><ul><li>Price: 100000 RECRYPT Satoshi ($0.1 in fiat)
 </li>
 <li>ICO tokens: 60,000,000
 </li>
-<li>1000 MTK : 1 QTUM
+<li>1000 MTK : 1 RECRYPT
 </li>
-<li>ICO funding: 60000 QTUM ($6,000,000)
+<li>ICO funding: 60000 RECRYPT ($6,000,000)
 </li></ul>
 </li></ul>
 <p>The valuation of the token is 10M post ICO.</p><h1 id="running-the-code"><a name="running-the-code" class="plugin-anchor" href="#running-the-code"><i class="fa fa-link" aria-hidden="true"></i></a>Running The Code</h1><p>Clone contracts:</p><pre><code>git clone --recursive \
-  https://github.com/qtumproject/qtumjs-crowdsale-cli</code></pre>
-<h2 id="running-qtumd"><a name="running-qtumd" class="plugin-anchor" href="#running-qtumd"><i class="fa fa-link" aria-hidden="true"></i></a>Running QTUMD</h2><p>Run qtumd in regtest mode:</p><pre><code>docker run -it --rm \
+  https://github.com/recryptproject/recryptjs-crowdsale-cli</code></pre>
+<h2 id="running-recryptd"><a name="running-recryptd" class="plugin-anchor" href="#running-recryptd"><i class="fa fa-link" aria-hidden="true"></i></a>Running RECRYPTD</h2><p>Run recryptd in regtest mode:</p><pre><code>docker run -it --rm \
   --name myico \
   -v `pwd`:/dapp \
   -p 3889:3889 \
   -p 9899:9899 \
   -p 9888:9888 \
-  hayeah/qtumportal</code></pre>
+  hayeah/recryptportal</code></pre>
 <p>Then generate some initial blocks:</p><pre><code>docker exec -it myico sh</code></pre>
 <pre><code>qcli generate 600</code></pre>
 <h1 id="configure-the-ico-owner-address"><a name="configure-the-ico-owner-address" class="plugin-anchor" href="#configure-the-ico-owner-address"><i class="fa fa-link" aria-hidden="true"></i></a>Configure The ICO Owner Address</h1><p>We&apos;ll need to create an address that &quot;owns&quot; all the contracts related to this ICO.</p><pre><code>qcli getnewaddress
@@ -576,7 +576,7 @@ qf292iYbjJ41oMoArA3PrHpxTdAHuQsuAu
 qcli gethexaddress qf292iYbjJ41oMoArA3PrHpxTdAHuQsuAu
 eb6a149ec16aaaa6e47b6c0048520f7d9563b20a</code></pre>
 <p>Prefund it with 100 UTXOs:</p><pre><code>solar prefund qf292iYbjJ41oMoArA3PrHpxTdAHuQsuAu 0.1 100</code></pre>
-<p>Then we need to configure <code>solar</code> to use this address when creating contracts (otherwise a random UTXO would be selected as the owner). In the container shell, set the <code>QTUM_SENDER</code> environment variable:</p><pre><code>export QTUM_SENDER=qf292iYbjJ41oMoArA3PrHpxTdAHuQsuAu</code></pre>
+<p>Then we need to configure <code>solar</code> to use this address when creating contracts (otherwise a random UTXO would be selected as the owner). In the container shell, set the <code>RECRYPT_SENDER</code> environment variable:</p><pre><code>export RECRYPT_SENDER=qf292iYbjJ41oMoArA3PrHpxTdAHuQsuAu</code></pre>
 <p>We will also use the owner address to receive the crowdsale investment.</p><h1 id="deploy-library"><a name="deploy-library" class="plugin-anchor" href="#deploy-library"><i class="fa fa-link" aria-hidden="true"></i></a>Deploy Library</h1><p>The crowdsale contracts rely on the <code>SafeMathLib</code> library for arithemetics, so that integer overflows would raise errors.</p><p>Use the <code>lib</code> option to deploy a contract as library:</p><pre><code>solar deploy contracts/SafeMathLib.sol --lib
 
 &#x1F680;  All contracts confirmed
@@ -600,7 +600,7 @@ eb6a149ec16aaaa6e47b6c0048520f7d9563b20a</code></pre>
 &#x1F680;  All contracts confirmed
    deployed MyToken =&gt; 92105c87931dea43d9901bd944a48d3b8a0268ad</code></pre>
 <p>The initial supply is set to 30M, with the tokens assigned to the contract owner. These tokens may later be transferred to the foundation and team vesting vault as necessary.</p><h2 id="pricing-strategy"><a name="pricing-strategy" class="plugin-anchor" href="#pricing-strategy"><i class="fa fa-link" aria-hidden="true"></i></a>Pricing Strategy</h2><p>The constructor for the <code>FlatPricing</code> strategy is straightforward:</p><pre><code>function FlatPricing(uint _oneTokenInWei)</code></pre>
-<p><a href="https://github.com/TokenMarketNet/ico/blob/f5b3ac6b5773f707943289b6ab1914a6b4e30683/contracts/FlatPricing.sol#L22" target="_blank">https://github.com/TokenMarketNet/ico/blob/f5b3ac6b5773f707943289b6ab1914a6b4e30683/contracts/FlatPricing.sol#L22</a></p><p>Note that this contract was written for Ethereum, whose smallest unit is <code>wei</code> (10^-9). However, QTUM inherits its ledger from Bitcoin, whose smallest unit is <code>satoshi</code> (10^-8).</p><p>So even though the constructor parameter name is <code>_oneTokenInWei</code>, what it really means is <code>_oneTokenInSatoshi</code>.</p><p>The price for the public ICO is 100000 qtum satoshi (1000 MTK : 1 qtum).</p><pre><code>solar deploy contracts/FlatPricing.sol &apos;
+<p><a href="https://github.com/TokenMarketNet/ico/blob/f5b3ac6b5773f707943289b6ab1914a6b4e30683/contracts/FlatPricing.sol#L22" target="_blank">https://github.com/TokenMarketNet/ico/blob/f5b3ac6b5773f707943289b6ab1914a6b4e30683/contracts/FlatPricing.sol#L22</a></p><p>Note that this contract was written for Ethereum, whose smallest unit is <code>wei</code> (10^-9). However, RECRYPT inherits its ledger from Bitcoin, whose smallest unit is <code>satoshi</code> (10^-8).</p><p>So even though the constructor parameter name is <code>_oneTokenInWei</code>, what it really means is <code>_oneTokenInSatoshi</code>.</p><p>The price for the public ICO is 100000 recrypt satoshi (1000 MTK : 1 recrypt).</p><pre><code>solar deploy contracts/FlatPricing.sol &apos;
 [
   100000
 ]
@@ -644,7 +644,7 @@ eb6a149ec16aaaa6e47b6c0048520f7d9563b20a</code></pre>
 </li>
 <li><p><code>_minimumFundingGoal</code>, specified in satoshi.</p><ul><li>Let&apos;s set it to 20% of the funding cap.
 </li>
-<li>60000 qtum <em> 20% == 12000 qtum == 12000 </em> 10^8 satoshi == 1200000000000 satoshi
+<li>60000 recrypt <em> 20% == 12000 recrypt == 12000 </em> 10^8 satoshi == 1200000000000 satoshi
 </li></ul>
 </li>
 <li><p><code>_maximumSellableTokens</code></p><ul><li>60,000,000 tokens
@@ -685,13 +685,13 @@ eb6a149ec16aaaa6e47b6c0048520f7d9563b20a</code></pre>
      address: f96403c9431ed464dd0063d18756718ac78f1edb
    confirmed: true
        owner: qf292iYbjJ41oMoArA3PrHpxTdAHuQsuAu</code></pre>
-<p>Make sure that all of them share the same owner. If not, make sure that the environment variable <code>QTUM_SENDER</code> is set to the owner address, and try again.</p><p>You may query for the basic information about these contracts using qtumjs:</p><pre><code class="lang-ts"><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;token supply:&quot;</span>, await mytoken.return(<span class="hljs-string">&quot;totalSupply&quot;</span>))
+<p>Make sure that all of them share the same owner. If not, make sure that the environment variable <code>RECRYPT_SENDER</code> is set to the owner address, and try again.</p><p>You may query for the basic information about these contracts using recryptjs:</p><pre><code class="lang-ts"><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;token supply:&quot;</span>, await mytoken.return(<span class="hljs-string">&quot;totalSupply&quot;</span>))
 <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;crowdsale state:&quot;</span>, await crowdsale.returnAs(stateName, <span class="hljs-string">&quot;getState&quot;</span>))
 <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;crowdsale start date:&quot;</span>, await crowdsale.returnDate(<span class="hljs-string">&quot;startsAt&quot;</span>))
 <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;crowdsale end date:&quot;</span>, await crowdsale.returnDate(<span class="hljs-string">&quot;endsAt&quot;</span>))
 
 <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;investor count:&quot;</span>, await crowdsale.return(<span class="hljs-string">&quot;investorCount&quot;</span>))
-<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;qtum raised:&quot;</span>, await crowdsale.returnCurrency(<span class="hljs-string">&quot;qtum&quot;</span>, <span class="hljs-string">&quot;weiRaised&quot;</span>))
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;recrypt raised:&quot;</span>, await crowdsale.returnCurrency(<span class="hljs-string">&quot;recrypt&quot;</span>, <span class="hljs-string">&quot;weiRaised&quot;</span>))
 <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;tokens sold:&quot;</span>, await crowdsale.return(<span class="hljs-string">&quot;tokensSold&quot;</span>))</code></pre>
 <p>Run the CLI script to print the info:</p><pre><code>node index.js info
 
@@ -700,7 +700,7 @@ crowdsale state: Preparing
 crowdsale start date: 2018-01-15T00:00:00.000Z
 crowdsale end date: 2018-03-01T00:00:00.000Z
 investor count: 0
-qtum raised: 0
+recrypt raised: 0
 tokens sold: 0</code></pre>
 <p>Note that the state is in <code>Preparing</code>, not quite ready for action.</p><h1 id="crowdsale-setup"><a name="crowdsale-setup" class="plugin-anchor" href="#crowdsale-setup"><i class="fa fa-link" aria-hidden="true"></i></a>Crowdsale Setup</h1><p>There is just a bit more setup, to grant permissions to different contracts to do their jobs.</p><p>The setup script:</p><pre><code class="lang-ts">async <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setupCrowdsale</span>(<span class="hljs-params"></span>) </span>{
   <span class="hljs-comment">// Set the finalize agent as token&apos;s release agent</span>
@@ -743,9 +743,9 @@ crowdsale state: PreFunding
 crowdsale start date: 2018-01-15T00:00:00.000Z
 crowdsale end date: 2018-03-01T00:00:00.000Z
 investor count: 0
-qtum raised: 0
+recrypt raised: 0
 tokens sold: 0</code></pre>
-<blockquote><p>The info shows the state as <code>PreFunding</code> even if the current time had past the start date. The actual state should be <code>Funding</code>. This problem will be fixed by <a href="https://github.com/qtumproject/qtum/issues/480" target="_blank">qtum #480</a></p></blockquote><h1 id="presale-pre-allocation"><a name="presale-pre-allocation" class="plugin-anchor" href="#presale-pre-allocation"><i class="fa fa-link" aria-hidden="true"></i></a>Presale Pre-Allocation</h1><p>According to our ICO plan, we have already sold 10% of the token supply (10,000,000) to early investors. We&apos;d like to record their investments on the ledger.</p><p>We assume that there are two investors, who invested at the same price:</p><pre><code class="lang-yaml"><span class="hljs-attr">- address:</span> <span class="hljs-string">&quot;77913e470293e72c1e93ed8dda8c1372dfc0274f&quot;</span>
+<blockquote><p>The info shows the state as <code>PreFunding</code> even if the current time had past the start date. The actual state should be <code>Funding</code>. This problem will be fixed by <a href="https://github.com/recryptproject/recrypt/issues/480" target="_blank">recrypt #480</a></p></blockquote><h1 id="presale-pre-allocation"><a name="presale-pre-allocation" class="plugin-anchor" href="#presale-pre-allocation"><i class="fa fa-link" aria-hidden="true"></i></a>Presale Pre-Allocation</h1><p>According to our ICO plan, we have already sold 10% of the token supply (10,000,000) to early investors. We&apos;d like to record their investments on the ledger.</p><p>We assume that there are two investors, who invested at the same price:</p><pre><code class="lang-yaml"><span class="hljs-attr">- address:</span> <span class="hljs-string">&quot;77913e470293e72c1e93ed8dda8c1372dfc0274f&quot;</span>
 <span class="hljs-attr">  tokens:</span> <span class="hljs-number">6000000</span>
 <span class="hljs-attr">  price:</span> <span class="hljs-number">50000</span>
 
@@ -757,7 +757,7 @@ tokens sold: 0</code></pre>
   uint fullTokens,
   uint weiPrice
 ) public onlyOwner;</code></pre>
-<p>To invoke <code>preallocate</code> with qtumjs:</p><pre><code class="lang-ts">async <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">preallocate</span>(<span class="hljs-params">receiverAddress, tokens, price</span>) </span>{
+<p>To invoke <code>preallocate</code> with recryptjs:</p><pre><code class="lang-ts">async <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">preallocate</span>(<span class="hljs-params">receiverAddress, tokens, price</span>) </span>{
   <span class="hljs-keyword">const</span> tx = await crowdsale.send(<span class="hljs-string">&quot;preallocate&quot;</span>, [receiverAddress, tokens, price])
   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;preallocate txid&quot;</span>, tx.txid)
 
@@ -789,7 +789,7 @@ tokens sold: 0</code></pre>
   77913e470293e72c1e93ed8dda8c1372dfc0274f
 
 invested by: 77913e470293e72c1e93ed8dda8c1372dfc0274f
-amount (qtum): 3000
+amount (recrypt): 3000
 token balance: 6000000</code></pre>
 <p>We&apos;ve finished allocation for one investor, let&apos;s repeat it for the second investor:</p><pre><code>node index.js preallocate \
   78d55bb60f8c0e80fda479b02e40407ee0a88ab1 \
@@ -798,7 +798,7 @@ token balance: 6000000</code></pre>
 <p>Check the ledger:</p><pre><code>node index.js investedBy 78d55bb60f8c0e80fda479b02e40407ee0a88ab1
 
 invested by: 78d55bb60f8c0e80fda479b02e40407ee0a88ab1
-amount (qtum): 2000
+amount (recrypt): 2000
 token balance: 4000000</code></pre>
 <p>After preallocation, the crowdsale info should have changed accordingly:</p><pre><code>node index.js info
 
@@ -807,9 +807,9 @@ crowdsale state: PreFunding
 crowdsale start date: 2018-01-15T00:00:00.000Z
 crowdsale end date: 2018-03-01T00:00:00.000Z
 investor count: 0
-qtum raised: 5000
+recrypt raised: 5000
 tokens sold: 10000000</code></pre>
-<blockquote><p>Note: the investor count is still 0 because the contract implementation assumes that one preallocation address may in fact distribute the tokens further to an arbitrary number of a smaller investors.</p></blockquote><h1 id="public-investment"><a name="public-investment" class="plugin-anchor" href="#public-investment"><i class="fa fa-link" aria-hidden="true"></i></a>Public Investment</h1><p>Once the crowdsale is in the <code>Funding</code> state, public investors may start to send in money. We&apos;ll let the investors use the <a href="https://github.com/TokenMarketNet/ico/blob/2835f331fd9a9356131dfcf0ddd2cee471b9e32f/contracts/Crowdsale.sol#L104" target="_blank">invest</a> method.</p><blockquote><p>The precise conditions that determines the state of the crowdsale is defined in the <a href="https://github.com/TokenMarketNet/ico/blob/2835f331fd9a9356131dfcf0ddd2cee471b9e32f/contracts/CrowdsaleBase.sol#L361" target="_blank">getState</a> method.</p></blockquote><p>The <code>invest</code> method sends in an amount of qtum, and receive a corresponding amount of tokens as determined by the pricing strategy. This method is more expensive to compute, so we set a higher gas limit of 300,000:</p><pre><code class="lang-ts">async <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">invest</span>(<span class="hljs-params">address, amount</span>) </span>{
+<blockquote><p>Note: the investor count is still 0 because the contract implementation assumes that one preallocation address may in fact distribute the tokens further to an arbitrary number of a smaller investors.</p></blockquote><h1 id="public-investment"><a name="public-investment" class="plugin-anchor" href="#public-investment"><i class="fa fa-link" aria-hidden="true"></i></a>Public Investment</h1><p>Once the crowdsale is in the <code>Funding</code> state, public investors may start to send in money. We&apos;ll let the investors use the <a href="https://github.com/TokenMarketNet/ico/blob/2835f331fd9a9356131dfcf0ddd2cee471b9e32f/contracts/Crowdsale.sol#L104" target="_blank">invest</a> method.</p><blockquote><p>The precise conditions that determines the state of the crowdsale is defined in the <a href="https://github.com/TokenMarketNet/ico/blob/2835f331fd9a9356131dfcf0ddd2cee471b9e32f/contracts/CrowdsaleBase.sol#L361" target="_blank">getState</a> method.</p></blockquote><p>The <code>invest</code> method sends in an amount of recrypt, and receive a corresponding amount of tokens as determined by the pricing strategy. This method is more expensive to compute, so we set a higher gas limit of 300,000:</p><pre><code class="lang-ts">async <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">invest</span>(<span class="hljs-params">address, amount</span>) </span>{
   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;invest&quot;</span>, address, amount)
   <span class="hljs-keyword">const</span> tx = await crowdsale.send(<span class="hljs-string">&quot;invest&quot;</span>, [address], {
     amount,
@@ -820,18 +820,18 @@ tokens sold: 10000000</code></pre>
   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;invest receipt:&quot;</span>)
   <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">JSON</span>.stringify(receipt, <span class="hljs-literal">null</span>, <span class="hljs-number">2</span>))
 }</code></pre>
-<p>Invoke the CLI tool to invest 7000 QTUMs:</p><pre><code>node index.js invest \
+<p>Invoke the CLI tool to invest 7000 RECRYPTs:</p><pre><code>node index.js invest \
   6607919dd81d8e958b31e2ef089139505faada4d \
   7000</code></pre>
 <p>After confirmation, we should see that this address had received 3000 MTKs:</p><pre><code>node index.js investedBy 6607919dd81d8e958b31e2ef089139505faada4d
 
 invested by: 6607919dd81d8e958b31e2ef089139505faada4d
-amount (qtum): 7000
+amount (recrypt): 7000
 token balance: 7000000</code></pre>
 <p>And the crowdsale info should have updated as well:</p><pre><code>node index.js info
 
 investor count: 1
-qtum raised: 12000
+recrypt raised: 12000
 tokens sold: 17000000
 minimum funding goal: 12000
 minimum funding goal reached: true</code></pre>
@@ -934,7 +934,7 @@ crowdsale state: PreFunding
 crowdsale start date: 2018-01-15T00:00:00.000Z
 crowdsale end date: 2018-02-08T09:43:00.000Z
 investor count: 1
-qtum raised: 7000
+recrypt raised: 7000
 tokens sold: 7000000
 minimum funding goal: 12000
 minimum funding goal reached: false</code></pre>
@@ -943,9 +943,9 @@ minimum funding goal reached: false</code></pre>
 <li>Individual investor invoke <a href="https://github.com/TokenMarketNet/ico/blob/2835f331fd9a9356131dfcf0ddd2cee471b9e32f/contracts/CrowdsaleBase.sol#L326" target="_blank">refund</a> to claim the fund.
 </li></ol>
 <h3 id="owner-loading-refund"><a name="owner-loading-refund" class="plugin-anchor" href="#owner-loading-refund"><i class="fa fa-link" aria-hidden="true"></i></a>Owner Loading Refund</h3><pre><code class="lang-js"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">loadRefund</span>(<span class="hljs-params"></span>) </span>{
-  <span class="hljs-keyword">const</span> amountRaised = <span class="hljs-keyword">await</span> crowdsale.returnCurrency(<span class="hljs-string">&quot;qtum&quot;</span>, <span class="hljs-string">&quot;weiRaised&quot;</span>)
+  <span class="hljs-keyword">const</span> amountRaised = <span class="hljs-keyword">await</span> crowdsale.returnCurrency(<span class="hljs-string">&quot;recrypt&quot;</span>, <span class="hljs-string">&quot;weiRaised&quot;</span>)
 
-  <span class="hljs-keyword">const</span> loadedRefund = <span class="hljs-keyword">await</span> crowdsale.returnCurrency(<span class="hljs-string">&quot;qtum&quot;</span>, <span class="hljs-string">&quot;loadedRefund&quot;</span>)
+  <span class="hljs-keyword">const</span> loadedRefund = <span class="hljs-keyword">await</span> crowdsale.returnCurrency(<span class="hljs-string">&quot;recrypt&quot;</span>, <span class="hljs-string">&quot;loadedRefund&quot;</span>)
 
   <span class="hljs-keyword">const</span> amountToLoad = amountRaised - loadedRefund
 
@@ -961,11 +961,11 @@ minimum funding goal reached: false</code></pre>
   }
 }</code></pre>
 <pre><code>node index.js loadRefund</code></pre>
-<h3 id="investor-claiming-fund"><a name="investor-claiming-fund" class="plugin-anchor" href="#investor-claiming-fund"><i class="fa fa-link" aria-hidden="true"></i></a>Investor Claiming Fund</h3><p>The amount invested by <code>6607919dd81d8e958b31e2ef089139505faada4d</code> should be 7000 qtum:</p><pre><code>node index.js investedBy \
+<h3 id="investor-claiming-fund"><a name="investor-claiming-fund" class="plugin-anchor" href="#investor-claiming-fund"><i class="fa fa-link" aria-hidden="true"></i></a>Investor Claiming Fund</h3><p>The amount invested by <code>6607919dd81d8e958b31e2ef089139505faada4d</code> should be 7000 recrypt:</p><pre><code>node index.js investedBy \
  6607919dd81d8e958b31e2ef089139505faada4d
 
 invested by: 6607919dd81d8e958b31e2ef089139505faada4d
-amount (qtum): 7000
+amount (recrypt): 7000
 token balance: 7000000</code></pre>
 <p>The investory can invoke <a href="https://github.com/TokenMarketNet/ico/blob/2835f331fd9a9356131dfcf0ddd2cee471b9e32f/contracts/CrowdsaleBase.sol#L326" target="_blank">refund</a> like this:</p><pre><code class="lang-js"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">refund</span>(<span class="hljs-params">addr</span>) </span>{
   <span class="hljs-keyword">const</span> tx = <span class="hljs-keyword">await</span> crowdsale.send(<span class="hljs-string">&quot;refund&quot;</span>, [], {
@@ -997,7 +997,7 @@ token balance: 7000000</code></pre>
        data: &apos;0000000000000000000000006607919dd81d8e958b31e2ef089139505faada4d000000000000000000000000000000000000000000000000000000a2fb405800&apos; } ] }</code></pre>
 <p>Use the <code>listunspent</code> command to check if the fund had indeed been returned:</p><pre><code>qcli listunspent 0 999990 \
   &apos;[&quot;qSrs9VHVveZpiYojiaZc8VAz8JJFDu9y7o&quot;]&apos;</code></pre>
-<p>There should be an UTXO created for this address with 7000 qtum:</p><pre><code>[
+<p>There should be an UTXO created for this address with 7000 recrypt:</p><pre><code>[
   // other UTXOs ...
 
   {

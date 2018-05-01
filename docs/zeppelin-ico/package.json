@@ -10,6 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "qtumjs": "^1.7.3"
+    "recryptjs": "^1.7.3"
   }
 }

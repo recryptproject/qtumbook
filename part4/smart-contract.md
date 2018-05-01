@@ -1,6 +1,6 @@
 # Smart Contract Raw TX
 
-In this chapter we will deploy and interact with a smart contract using the JSON RPC. We will also see the underlying raw transaction that implements QTUM's Smart Contract platform.
+In this chapter we will deploy and interact with a smart contract using the JSON RPC. We will also see the underlying raw transaction that implements RECRYPT's Smart Contract platform.
 
 The example is a contract with one single storage variable:
 
@@ -138,7 +138,7 @@ The output:
 + The first vout is a the change returned to the wallet of the sender
 + The second vout is an OP_CREATE script
 
-The OP_CREATE is a new instruction added by QTUM to support smart contract platforms. It takes four arguments on the stack, as commented below:
+The OP_CREATE is a new instruction added by RECRYPT to support smart contract platforms. It takes four arguments on the stack, as commented below:
 
 ```
 # VM version

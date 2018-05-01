@@ -1,6 +1,6 @@
 # ERC20 Token
 
-In this chapter we will deploy an ERC20 token on QTUM. All ERC20 compliant token contracts support a common set of methods:
+In this chapter we will deploy an ERC20 token on RECRYPT. All ERC20 compliant token contracts support a common set of methods:
 
 ```
 contract ERC20 {
@@ -19,7 +19,7 @@ contract ERC20 {
 Because all tokens share the same interface, it is much easier for wallets and exchanges to support all the different tokens out there in the wild.
 
 In what follows, we will deploy the
-[CappedToken](https://github.com/OpenZeppelin/zeppelin-solidity/blob/4ce0e211c500aa756120c4f2851cc75518123309/contracts/token/CappedToken.sol), implemented by [OpenZeppelin](https://github.com/OpenZeppelin). We won't need to modify the contract in any way to make it work on QTUM.
+[CappedToken](https://github.com/OpenZeppelin/zeppelin-solidity/blob/4ce0e211c500aa756120c4f2851cc75518123309/contracts/token/CappedToken.sol), implemented by [OpenZeppelin](https://github.com/OpenZeppelin). We won't need to modify the contract in any way to make it work on RECRYPT.
 
 The `CappedToken` is an ERC20 compliant token, inheriting the basic functionalities from both [StandardToken](https://github.com/OpenZeppelin/zeppelin-solidity/blob/4ce0e211c500aa756120c4f2851cc75518123309/contracts/token/StandardToken.sol) and [MintableToken](https://github.com/OpenZeppelin/zeppelin-solidity/blob/master/contracts/token/MintableToken.sol).
 
@@ -39,7 +39,7 @@ mkdir mytoken && cd mytoken
 git clone https://github.com/OpenZeppelin/zeppelin-solidity.git
 ```
 
-For this exercise, we'll start `qtumd` from scratch, in regtest mode:
+For this exercise, we'll start `recryptd` from scratch, in regtest mode:
 
 ```
 docker run -it --rm \
@@ -47,7 +47,7 @@ docker run -it --rm \
   -v `pwd`:/dapp \
   -p 9899:9899 \
   -p 9888:9888 \
-  hayeah/qtumportal
+  hayeah/recryptportal
 ```
 
 Enter into the container:
@@ -92,7 +92,7 @@ qdgznat81MfTHZUrQrLZDZteAx212X4Wjj
 
 There's nothing special about this address. You could use the address of any UTXO in your wallet.
 
-Let's fund the owner address with 10 QTUM, to pay for gas when we deploy our contract later:
+Let's fund the owner address with 10 RECRYPT, to pay for gas when we deploy our contract later:
 
 ```
 qcli sendtoaddress qdgznat81MfTHZUrQrLZDZteAx212X4Wjj 10
@@ -121,7 +121,7 @@ qcli listunspent 1 99999 '["qdgznat81MfTHZUrQrLZDZteAx212X4Wjj"]'
 Finally, we'll need to configure the deployment tool `solar` to use this particular address as the owner:
 
 ```
-export QTUM_SENDER=qdgznat81MfTHZUrQrLZDZteAx212X4Wjj
+export RECRYPT_SENDER=qdgznat81MfTHZUrQrLZDZteAx212X4Wjj
 ```
 
 We are now ready to deploy our token contract.
@@ -138,13 +138,13 @@ It takes quite a few steps to deploy a contract:
 
 1. Use the [solidity compiler](https://github.com/ethereum/solidity) to compile the contract into bytecode.
 2. [ABI encode](https://github.com/ethereum/wiki/wiki/Ethereum-Contract-ABI) the `_capacity` parameter into bytes.
-3. Concatenate 1 and 2 together, then make a `createcontract` RPC call to qtumd.
+3. Concatenate 1 and 2 together, then make a `createcontract` RPC call to recryptd.
 4. Wait for transaction to confirm.
 5. Record the address of the contract, and owner of the contract, for later uses.
 
-The [solar](https://github.com/qtumproject/solar.git) Smart Contract deployment tool (included in the container) handles all of this for you.
+The [solar](https://github.com/recryptproject/solar.git) Smart Contract deployment tool (included in the container) handles all of this for you.
 
-To deploy the CappedToken contract, specifying 21 million as the capacity by passing in the constructor parameters as a JSON array (remember to set `QTUM_SENDER`):
+To deploy the CappedToken contract, specifying 21 million as the capacity by passing in the constructor parameters as a JSON array (remember to set `RECRYPT_SENDER`):
 
 ```
 solar deploy zeppelin-solidity/contracts/token/ERC20/CappedToken.sol \
@@ -173,13 +173,13 @@ solar status
        owner: qdgznat81MfTHZUrQrLZDZteAx212X4Wjj
 ```
 
-Note that the contract's owner should be set to the `QTUM_SENDER` value we have specified earlier. If you did not set `QTUM_SENDER` to anything, a random UTXO from the wallet is selected, and that become the owner.
+Note that the contract's owner should be set to the `RECRYPT_SENDER` value we have specified earlier. If you did not set `RECRYPT_SENDER` to anything, a random UTXO from the wallet is selected, and that become the owner.
 
 You can find more information about the deployed contracts in `solar.development.json`.
 
 # The Owner UTXO Address As Sender
 
-The main difference between QTUM and Ethereum is that QTUM is built on Bitcoin's UTXO model, and Ethereum has its own account model, as we've seen in the [QTUM UTXO](../part1/UTXOs-balances.md) chapter.
+The main difference between RECRYPT and Ethereum is that RECRYPT is built on Bitcoin's UTXO model, and Ethereum has its own account model, as we've seen in the [RECRYPT UTXO](../part1/UTXOs-balances.md) chapter.
 
 In Ethereum, the cost of a transaction is paid by an account. The amount paid is decremented from the account, but the account is still there.
 
@@ -187,7 +187,7 @@ UTXO, however, may be spent only once. So earlier we used an UTXO with the addre
 
 So every time you act as the owner of a contract, you destroy the owner UTXO. And next time you want to act as the owner of the contract, you'd need a new UTXO with the same address. This could be very annoying if you had to do it manually.
 
-Fortunately, when interacting with a contract, QTUM always create a new UTXO with the same address to replace UTXO that was used up.
+Fortunately, when interacting with a contract, RECRYPT always create a new UTXO with the same address to replace UTXO that was used up.
 
 Listing the UTXO for the owner address `qdgznat81MfTHZUrQrLZDZteAx212X4Wjj`, we see that, hey, there's still one UTXO, even though we already spent one:
 
@@ -212,7 +212,7 @@ Note, however, that the transaction id `457a...f6d3` is different from the UTXO 
 
 The amount `8.78777200` is the "change". For a transaction that interacts with a contract, the "change" is paid to the sender. Whereas in a typical payment transaction, the change is paid to a newly generated address controlled by the wallet.
 
-The upshot is that despite the vastly different accounting model between Bitcoin UTXO and Ethereum account, in QTUM they behave in very similar ways.
+The upshot is that despite the vastly different accounting model between Bitcoin UTXO and Ethereum account, in RECRYPT they behave in very similar ways.
 
 # Using The ABIPlayer
 
@@ -256,7 +256,7 @@ Click send, and you'll see that the transaction is waiting for authorization:
 
 ![](./erc20-token/mint-waiting-authorization.jpg)
 
-This request requires your authorization because it costs QTUM. Visit the authorization UI (http://localhost:9899/) to approve it:
+This request requires your authorization because it costs RECRYPT. Visit the authorization UI (http://localhost:9899/) to approve it:
 
 ![](./erc20-token/mint-auth.jpg)
 

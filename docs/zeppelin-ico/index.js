@@ -1,11 +1,11 @@
-const { Qtum } = require("qtumjs")
+const { Recrypt } = require("recryptjs")
 
 const repoData = require("./solar.development.json")
 
-const qtum = new Qtum("http://qtum:test@localhost:3889", repoData)
+const recrypt = new Recrypt("http://recrypt:test@localhost:3889", repoData)
 
-const mytoken = qtum.contract("contracts/MyToken.sol")
-const crowdsale = qtum.contract("contracts/MyCrowdsale.sol")
+const mytoken = recrypt.contract("contracts/MyToken.sol")
+const crowdsale = recrypt.contract("contracts/MyCrowdsale.sol")
 
 async function setupCrowdsale() {
   const mint = await mytoken.send("mint", [crowdsale.address, 10000 * 1000 * 1e8])

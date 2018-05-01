@@ -1,11 +1,11 @@
-const { Qtum } = require("qtumjs")
+const { Recrypt } = require("recryptjs")
 const BN = require("bn.js")
 
 const repoData = require("./solar.development.json")
 
-const qtum = new Qtum("http://qtum:test@localhost:3889", repoData)
+const recrypt = new Recrypt("http://recrypt:test@localhost:3889", repoData)
 
-const mytoken = qtum.contract("VevueToken.sol")
+const mytoken = recrypt.contract("VevueToken.sol")
 
 let decimals = 8
 function tokenAmount(bnumber) {
@@ -32,7 +32,7 @@ async function showInfo() {
 /**
  *
  * @param {string} beneficiary address to send purchase tokens
- * @param {number} amount amount of qtum used to purchase tokens
+ * @param {number} amount amount of recrypt used to purchase tokens
  */
 async function buyTokens(beneficiary, amount) {
   const tx = await mytoken.send("buyTokens", [beneficiary], {

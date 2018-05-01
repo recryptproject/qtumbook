@@ -4,13 +4,13 @@
 
 * how about setting decimals to 1e-8?
 
-* 1 QTUM to 1000 MYT
-* rate = 1000 (1 qtum satoshi for 1000 MYT satoshi)
-* cap = 10000 QTUM
+* 1 RECRYPT to 1000 MYT
+* rate = 1000 (1 recrypt satoshi for 1000 MYT satoshi)
+* cap = 10000 RECRYPT
   *  cap = 10000 * 1e5 = 10000000000 = 1e15
 
 + cap
-* let's say we wanna raise 10000 qtum.
+* let's say we wanna raise 10000 recrypt.
   * 10000 * 1e8 = 10000000000000 = 1e15
 
 
@@ -23,7 +23,7 @@ qcli gethexaddress qSLQEDyJBLPYxwPEAWy7UcjeBtfHgzr86g
 ```
 
 ```
-export QTUM_SENDER=qSLQEDyJBLPYxwPEAWy7UcjeBtfHgzr86g
+export RECRYPT_SENDER=qSLQEDyJBLPYxwPEAWy7UcjeBtfHgzr86g
 ```
 
 ```

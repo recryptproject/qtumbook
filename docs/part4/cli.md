@@ -1,6 +1,6 @@
-# QTUM Command Line Client
+# RECRYPT Command Line Client
 
-The `qtum-cli` tool is based on `bitcoin-cli`. Many command are inherited from [Bitcoin API calls](https://en.bitcoin.it/wiki/Original_Bitcoin_client/API_calls_list#References).
+The `recrypt-cli` tool is based on `bitcoin-cli`. Many command are inherited from [Bitcoin API calls](https://en.bitcoin.it/wiki/Original_Bitcoin_client/API_calls_list#References).
 
 List all available commands:
 
@@ -21,7 +21,7 @@ getchaintips
 ...more
 ```
 
-To support the EVM smart contract, there are a few QTUM specific commands:
+To support the EVM smart contract, there are a few RECRYPT specific commands:
 
 ```
 callcontract "address" "data" ( address )
@@ -73,15 +73,15 @@ Result:
 {
   "transactions": [
     "account":"accountname",       (string) DEPRECATED. The account name associated with the transaction. Will be "" for the default account.
-    "address":"address",    (string) The qtum address of the transaction. Not present for move transactions (category = move).
+    "address":"address",    (string) The recrypt address of the transaction. Not present for move transactions (category = move).
     ...
   ],
   "lastblock": "lastblockhash"     (string) The hash of the last block
 }
 
 Examples:
-> qtum-cli listsinceblock
-> qtum-cli listsinceblock "000000000000000bacf66f7497b7dc45ef753ee9a7d38571037cdb1a57f663ad" 6
+> recrypt-cli listsinceblock
+> recrypt-cli listsinceblock "000000000000000bacf66f7497b7dc45ef753ee9a7d38571037cdb1a57f663ad" 6
 > curl --user myusername --data-binary '{"jsonrpc": "1.0", "id":"curltest", "method": "listsinceblock", "params": ["000000000000000bacf66f7497b7d
 c45ef753ee9a7d38571037cdb1a57f663ad", 6] }' -H 'content-type: text/plain;' http://127.0.0.1:3889/
 ```

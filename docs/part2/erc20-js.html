@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>ERC20 With QtumJS · GitBook</title>
+        <title>ERC20 With RecryptJS · GitBook</title>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -109,16 +109,16 @@
 
     
         
-        <li class="header">Part 1 - Running QTUM</li>
+        <li class="header">Part 1 - Running RECRYPT</li>
         
         
     
-        <li class="chapter " data-level="2.1" data-path="../part1/qtum-docker.html">
+        <li class="chapter " data-level="2.1" data-path="../part1/recrypt-docker.html">
             
-                <a href="../part1/qtum-docker.html">
+                <a href="../part1/recrypt-docker.html">
             
                     
-                    QTUM Docker Container
+                    RECRYPT Docker Container
             
                 </a>
             
@@ -127,9 +127,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="2.1.1" data-path="../part1/qtum-docker.html">
+        <li class="chapter " data-level="2.1.1" data-path="../part1/recrypt-docker.html">
             
-                <a href="../part1/qtum-docker.html#running-regtest-mode">
+                <a href="../part1/recrypt-docker.html#running-regtest-mode">
             
                     
                     Tip: regtest Mode
@@ -140,9 +140,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.1.2" data-path="../part1/qtum-docker.html">
+        <li class="chapter " data-level="2.1.2" data-path="../part1/recrypt-docker.html">
             
-                <a href="../part1/qtum-docker.html#new-blocks-on-demand">
+                <a href="../part1/recrypt-docker.html#new-blocks-on-demand">
             
                     
                     Tip: New Blocks On Demand
@@ -153,9 +153,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.1.3" data-path="../part1/qtum-docker-codenvy/">
+        <li class="chapter " data-level="2.1.3" data-path="../part1/recrypt-docker-codenvy/">
             
-                <a href="../part1/qtum-docker-codenvy/">
+                <a href="../part1/recrypt-docker-codenvy/">
             
                     
                     Docker In Browser
@@ -299,7 +299,7 @@
                 <a href="erc20-js.html">
             
                     
-                    ERC20 With QtumJS
+                    ERC20 With RecryptJS
             
                 </a>
             
@@ -474,7 +474,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >ERC20 With QtumJS</a>
+        <a href=".." >ERC20 With RecryptJS</a>
     </h1>
 </div>
 
@@ -489,31 +489,31 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="erc20-with-qtumjs"><a name="erc20-with-qtumjs" class="plugin-anchor" href="#erc20-with-qtumjs"><i class="fa fa-link" aria-hidden="true"></i></a>ERC20 With QtumJS</h1><p>In this chapter we will use <a href="https://github.com/qtumproject/qtumjs" target="_blank">qtumjs</a> to build a NodeJS CLI tool to interact with the ERC20 <a href="erc20-token.html">token we deployed previously</a>.</p><p>You can download the project code: <a href="https://github.com/qtumproject/qtumbook-mytoken-qtumjs-cli" target="_blank">qtumproject/qtumbook-mytoken-qtumjs-cli</a>.</p><p>For now, qtumjs relies on <code>qtumd</code>&apos;s RPC service, so make sure that the docker container is running:</p><pre><code>docker run -it --rm \
+                                <h1 id="erc20-with-recryptjs"><a name="erc20-with-recryptjs" class="plugin-anchor" href="#erc20-with-recryptjs"><i class="fa fa-link" aria-hidden="true"></i></a>ERC20 With RecryptJS</h1><p>In this chapter we will use <a href="https://github.com/recryptproject/recryptjs" target="_blank">recryptjs</a> to build a NodeJS CLI tool to interact with the ERC20 <a href="erc20-token.html">token we deployed previously</a>.</p><p>You can download the project code: <a href="https://github.com/recryptproject/recryptbook-mytoken-recryptjs-cli" target="_blank">recryptproject/recryptbook-mytoken-recryptjs-cli</a>.</p><p>For now, recryptjs relies on <code>recryptd</code>&apos;s RPC service, so make sure that the docker container is running:</p><pre><code>docker run -it --rm \
   --name myapp \
   -v `pwd`:/dapp \
   -p 9899:9899 \
   -p 9888:9888 \
   -p 3889:3889 \
-  hayeah/qtumportal</code></pre>
+  hayeah/recryptportal</code></pre>
 <h2 id="note-on-nodejs-compatibility"><a name="note-on-nodejs-compatibility" class="plugin-anchor" href="#note-on-nodejs-compatibility"><i class="fa fa-link" aria-hidden="true"></i></a>Note On NodeJS Compatibility</h2><p>You&apos;ll need a version of <code>node</code> that supports <a href="https://blog.risingstack.com/mastering-async-await-in-nodejs/" target="_blank">async/await</a>. You should be ok if your version number is greater than 8.</p><p>My version is 8.6 (nothing special about this version...):</p><pre><code>node --version
 
 v8.6.0</code></pre>
 <p>I recommend that you download the <a href="https://nodejs.org/en/download/" target="_blank">Long Term Support</a> version (8.9.3):</p><p><img src="erc20-js/node-lts-8.jpg"></p><p>You can test whether async/await is supported or not by entering into the node REPL:</p><pre><code>$ node</code></pre>
 <p>Then create an async function:</p><pre><code>&gt; async () =&gt; { }
 [AsyncFunction]</code></pre>
-<blockquote><p>If for some reason you need to run qtumjs on a platform that does not support async/await, please <a href="https://github.com/qtumproject/qtumjs/issues" target="_blank">create an issue</a>.</p></blockquote><h2 id="note-on-code-editor"><a name="note-on-code-editor" class="plugin-anchor" href="#note-on-code-editor"><i class="fa fa-link" aria-hidden="true"></i></a>Note on Code Editor</h2><p>For modern JavaScript development, you really owe it to yourself to try <a href="https://code.visualstudio.com/" target="_blank">VSCode</a>. <code>qtumjs</code> comes with static type definitions for its API, and with VSCode you get some of the most useful IDE features (e.g. type-accurate autocomplete) without the UX bloat:</p><p><img src="erc20-js/qtumjs-vscode.jpg"></p><p>While I am on my evangelizing soapbox, you should try <a href="https://www.typescriptlang.org" target="_blank">TypeScript</a> too! JavaScript is in fact an extremely powerful language, though it seems like a joke. TypeScript is the sobered-up version, yet retaining the same dynamism and expressivity that JavaScript developers love.</p><p>Now, back to QTUM :p</p><h1 id="setup-the-erc20-cli-project"><a name="setup-the-erc20-cli-project" class="plugin-anchor" href="#setup-the-erc20-cli-project"><i class="fa fa-link" aria-hidden="true"></i></a>Setup The ERC20 CLI Project</h1><p>Let&apos;s clone the NodeJS project to the directory <code>mytoken-js</code>:</p><pre><code>git clone https://github.com/qtumproject/qtumbook-mytoken-qtumjs-cli.git mytoken-js</code></pre>
+<blockquote><p>If for some reason you need to run recryptjs on a platform that does not support async/await, please <a href="https://github.com/recryptproject/recryptjs/issues" target="_blank">create an issue</a>.</p></blockquote><h2 id="note-on-code-editor"><a name="note-on-code-editor" class="plugin-anchor" href="#note-on-code-editor"><i class="fa fa-link" aria-hidden="true"></i></a>Note on Code Editor</h2><p>For modern JavaScript development, you really owe it to yourself to try <a href="https://code.visualstudio.com/" target="_blank">VSCode</a>. <code>recryptjs</code> comes with static type definitions for its API, and with VSCode you get some of the most useful IDE features (e.g. type-accurate autocomplete) without the UX bloat:</p><p><img src="erc20-js/recryptjs-vscode.jpg"></p><p>While I am on my evangelizing soapbox, you should try <a href="https://www.typescriptlang.org" target="_blank">TypeScript</a> too! JavaScript is in fact an extremely powerful language, though it seems like a joke. TypeScript is the sobered-up version, yet retaining the same dynamism and expressivity that JavaScript developers love.</p><p>Now, back to RECRYPT :p</p><h1 id="setup-the-erc20-cli-project"><a name="setup-the-erc20-cli-project" class="plugin-anchor" href="#setup-the-erc20-cli-project"><i class="fa fa-link" aria-hidden="true"></i></a>Setup The ERC20 CLI Project</h1><p>Let&apos;s clone the NodeJS project to the directory <code>mytoken-js</code>:</p><pre><code>git clone https://github.com/recryptproject/recryptbook-mytoken-recryptjs-cli.git mytoken-js</code></pre>
 <p>The project dependencies are listed in <code>package.json</code>:</p><pre><code>{
   ...
 
   &quot;dependencies&quot;: {
     &quot;minimist&quot;: &quot;^1.2.0&quot;,
     &quot;ora&quot;: &quot;^1.3.0&quot;,
-    &quot;qtumjs&quot;: &quot;^1.4.1&quot;
+    &quot;recryptjs&quot;: &quot;^1.4.1&quot;
   }
 }</code></pre>
-<p><a href="https://github.com/qtumproject/qtumbook-mytoken-qtumjs-cli/blob/23e6d0c40890075163eefacc0c66b018dc9c8bbc/package.json#L7-L9" target="_blank">https://github.com/qtumproject/qtumbook-mytoken-qtumjs-cli/blob/23e6d0c40890075163eefacc0c66b018dc9c8bbc/package.json#L7-L9</a></p><p>Install these dependencies:</p><pre><code>npm install</code></pre>
-<blockquote><p>Or <code>yarn install</code> if you prefer that. See: <a href="https://yarnpkg.com/en/docs/install" target="_blank">https://yarnpkg.com/en/docs/install</a></p></blockquote><h1 id="getting-the-total-supply"><a name="getting-the-total-supply" class="plugin-anchor" href="#getting-the-total-supply"><i class="fa fa-link" aria-hidden="true"></i></a>Getting The Total Supply</h1><p>Let&apos;s try to get the token&apos;s total supply. Run the script <a href="https://github.com/qtumproject/qtumbook-mytoken-qtumjs-cli/blob/23e6d0c40890075163eefacc0c66b018dc9c8bbc/index.js" target="_blank">index.js</a>:</p><pre><code>node index.js supply
+<p><a href="https://github.com/recryptproject/recryptbook-mytoken-recryptjs-cli/blob/23e6d0c40890075163eefacc0c66b018dc9c8bbc/package.json#L7-L9" target="_blank">https://github.com/recryptproject/recryptbook-mytoken-recryptjs-cli/blob/23e6d0c40890075163eefacc0c66b018dc9c8bbc/package.json#L7-L9</a></p><p>Install these dependencies:</p><pre><code>npm install</code></pre>
+<blockquote><p>Or <code>yarn install</code> if you prefer that. See: <a href="https://yarnpkg.com/en/docs/install" target="_blank">https://yarnpkg.com/en/docs/install</a></p></blockquote><h1 id="getting-the-total-supply"><a name="getting-the-total-supply" class="plugin-anchor" href="#getting-the-total-supply"><i class="fa fa-link" aria-hidden="true"></i></a>Getting The Total Supply</h1><p>Let&apos;s try to get the token&apos;s total supply. Run the script <a href="https://github.com/recryptproject/recryptbook-mytoken-recryptjs-cli/blob/23e6d0c40890075163eefacc0c66b018dc9c8bbc/index.js" target="_blank">index.js</a>:</p><pre><code>node index.js supply
 
 Error: Cannot find module &apos;./solar.json&apos;</code></pre>
 <p>Oops, the script needs to load information about the contracts you have deployed.</p><pre><code class="lang-js"><span class="hljs-comment">// Load deployment information generated by solar</span>
@@ -525,8 +525,8 @@ Error: Cannot find module &apos;./solar.json&apos;</code></pre>
 ])</code></pre>
 <ul><li>The <code>require</code> function loads <code>solar.json</code> as a JavaScript object.
 </li></ul>
-<p>You should link (or copy) <code>solar.development.json</code> generated in the previous chapter to the project directory as <code>solar.json</code>:</p><pre><code>ln -s ~/qtumbook/examples/mytoken/solar.development.json solar.json</code></pre>
-<blockquote><p>See an example <a href="https://github.com/qtumproject/qtumbook-mytoken-qtumjs-cli/blob/master/solar.development.json.example" target="_blank">solar.development.json</a> file</p></blockquote><p>Now try again:</p><pre><code>node index.js supply
+<p>You should link (or copy) <code>solar.development.json</code> generated in the previous chapter to the project directory as <code>solar.json</code>:</p><pre><code>ln -s ~/recryptbook/examples/mytoken/solar.development.json solar.json</code></pre>
+<blockquote><p>See an example <a href="https://github.com/recryptproject/recryptbook-mytoken-recryptjs-cli/blob/master/solar.development.json.example" target="_blank">solar.development.json</a> file</p></blockquote><p>Now try again:</p><pre><code>node index.js supply
 
 supply 14000</code></pre>
 <p>Yay it works (hopefully).</p><h1 id="calling-a-read-only-method"><a name="calling-a-read-only-method" class="plugin-anchor" href="#calling-a-read-only-method"><i class="fa fa-link" aria-hidden="true"></i></a>Calling A Read-Only Method</h1><p>The Solidity method we called is:</p><pre><code>function totalSupply() public view returns(uint256)</code></pre>
@@ -545,7 +545,7 @@ supply 14000</code></pre>
   <span class="hljs-string">&quot;constant&quot;</span>: <span class="hljs-literal">true</span>,
   <span class="hljs-string">&quot;anonymous&quot;</span>: <span class="hljs-literal">false</span>
 }</code></pre>
-<p><a href="https://github.com/qtumproject/qtumbook-mytoken-qtumjs-cli/blob/5e2e162efcd8d32971e7fab6d1c843ac1c843933/solar.development.json.example#L46-L60" target="_blank">https://github.com/qtumproject/qtumbook-mytoken-qtumjs-cli/blob/5e2e162efcd8d32971e7fab6d1c843ac1c843933/solar.development.json.example#L46-L60</a></p><p>And to call this method using JavaScript:</p><pre><code class="lang-js"><span class="hljs-comment">// const myToken = new Contract( ... )</span>
+<p><a href="https://github.com/recryptproject/recryptbook-mytoken-recryptjs-cli/blob/5e2e162efcd8d32971e7fab6d1c843ac1c843933/solar.development.json.example#L46-L60" target="_blank">https://github.com/recryptproject/recryptbook-mytoken-recryptjs-cli/blob/5e2e162efcd8d32971e7fab6d1c843ac1c843933/solar.development.json.example#L46-L60</a></p><p>And to call this method using JavaScript:</p><pre><code class="lang-js"><span class="hljs-comment">// const myToken = new Contract( ... )</span>
 
 <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">totalSupply</span>(<span class="hljs-params"></span>) </span>{
   <span class="hljs-keyword">const</span> result = <span class="hljs-keyword">await</span> myToken.call(<span class="hljs-string">&quot;totalSupply&quot;</span>)
@@ -555,7 +555,7 @@ supply 14000</code></pre>
 
   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;supply&quot;</span>, supply.toNumber())
 }</code></pre>
-<p><a href="https://github.com/qtumproject/qtumbook-mytoken-qtumjs-cli/blob/5e2e162efcd8d32971e7fab6d1c843ac1c843933/index.js#L15-L22" target="_blank">https://github.com/qtumproject/qtumbook-mytoken-qtumjs-cli/blob/5e2e162efcd8d32971e7fab6d1c843ac1c843933/index.js#L15-L22</a></p><ul><li><code>myToken.call(&quot;totalSupply&quot;)</code> returns a <a href="https://developers.google.com/web/fundamentals/primers/promises" target="_blank">Promise</a>, and <code>await</code> is a syntatic sugar to that waits for the asynchronous computation, then returns the result.
+<p><a href="https://github.com/recryptproject/recryptbook-mytoken-recryptjs-cli/blob/5e2e162efcd8d32971e7fab6d1c843ac1c843933/index.js#L15-L22" target="_blank">https://github.com/recryptproject/recryptbook-mytoken-recryptjs-cli/blob/5e2e162efcd8d32971e7fab6d1c843ac1c843933/index.js#L15-L22</a></p><ul><li><code>myToken.call(&quot;totalSupply&quot;)</code> returns a <a href="https://developers.google.com/web/fundamentals/primers/promises" target="_blank">Promise</a>, and <code>await</code> is a syntatic sugar to that waits for the asynchronous computation, then returns the result.
 </li>
 <li>Solidity numbers (int, uint, etc.) are represented in JavaScript using <a href="https://github.com/indutny/bn.js/" target="_blank">BigNumber</a>.
 </li></ul>
@@ -576,7 +576,7 @@ supply 14000</code></pre>
 0000000000000000000000000000000000000000000000000&apos;,
      log: [] },
   outputs: [ &lt;BN: 36b0&gt; ] }</code></pre>
-<p>If you hover your mouse cursor over the <code>result</code> variable, you should see that its type is <code>IContractCallDecodedResult</code>:</p><p><img src="erc20-js/hover-call-result-typehint.jpg"></p><p>The type definition for <a href="https://sourcegraph.com/github.com/qtumproject/qtumjs@803dae6430e27a1903373eb6f2589d055ce16b73/-/blob/src/Contract.ts#L81" target="_blank">IContractCallDecodedResult</a>:</p><pre><code class="lang-js"><span class="hljs-keyword">export</span> interface IContractCallDecodedResult extends IRPCCallContractResult {
+<p>If you hover your mouse cursor over the <code>result</code> variable, you should see that its type is <code>IContractCallDecodedResult</code>:</p><p><img src="erc20-js/hover-call-result-typehint.jpg"></p><p>The type definition for <a href="https://sourcegraph.com/github.com/recryptproject/recryptjs@803dae6430e27a1903373eb6f2589d055ce16b73/-/blob/src/Contract.ts#L81" target="_blank">IContractCallDecodedResult</a>:</p><pre><code class="lang-js"><span class="hljs-keyword">export</span> interface IContractCallDecodedResult extends IRPCCallContractResult {
     outputs: any[];
 }
 
@@ -612,11 +612,11 @@ balance: 13700</code></pre>
 
   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`balance:`</span>,  balance.toNumber())
 }</code></pre>
-<p><a href="https://github.com/qtumproject/qtumbook-mytoken-qtumjs-cli/blob/5e2e162efcd8d32971e7fab6d1c843ac1c843933/index.js#L24-L31" target="_blank">https://github.com/qtumproject/qtumbook-mytoken-qtumjs-cli/blob/5e2e162efcd8d32971e7fab6d1c843ac1c843933/index.js#L24-L31</a></p><p>The arguments to <code>balanceOf</code> are passed in as an array.</p><h1 id="send-vs-call"><a name="send-vs-call" class="plugin-anchor" href="#send-vs-call"><i class="fa fa-link" aria-hidden="true"></i></a>Send VS Call</h1><p>Confusingly, there are two ways to invoke a method: <code>send</code> and <code>call</code>. These two names are inherited from Ethereum. A more descriptive way to name them is perhaps to call <code>send</code> &quot;commit&quot; and <code>call</code> &quot;query&quot;.</p><ul><li><code>call</code> (or &quot;query&quot;): executes contract code on your own local <code>qtumd</code> node as a &quot;simulation&quot;, returning results, but not changing the blockchain. This is free.
+<p><a href="https://github.com/recryptproject/recryptbook-mytoken-recryptjs-cli/blob/5e2e162efcd8d32971e7fab6d1c843ac1c843933/index.js#L24-L31" target="_blank">https://github.com/recryptproject/recryptbook-mytoken-recryptjs-cli/blob/5e2e162efcd8d32971e7fab6d1c843ac1c843933/index.js#L24-L31</a></p><p>The arguments to <code>balanceOf</code> are passed in as an array.</p><h1 id="send-vs-call"><a name="send-vs-call" class="plugin-anchor" href="#send-vs-call"><i class="fa fa-link" aria-hidden="true"></i></a>Send VS Call</h1><p>Confusingly, there are two ways to invoke a method: <code>send</code> and <code>call</code>. These two names are inherited from Ethereum. A more descriptive way to name them is perhaps to call <code>send</code> &quot;commit&quot; and <code>call</code> &quot;query&quot;.</p><ul><li><code>call</code> (or &quot;query&quot;): executes contract code on your own local <code>recryptd</code> node as a &quot;simulation&quot;, returning results, but not changing the blockchain. This is free.
 </li>
 <li><code>send</code> (or &quot;commit&quot;): creates an actual transaction that would execute code globally on the network, changing the blockchain. This costs gas.
 </li></ul>
-<p>Next, we are going to mint some new tokens using qtumjs. And because minting token changes the blockchain, we&apos;ll use <code>send</code>.</p><h1 id="mint-tokens-with-send"><a name="mint-tokens-with-send" class="plugin-anchor" href="#mint-tokens-with-send"><i class="fa fa-link" aria-hidden="true"></i></a>Mint Tokens With Send</h1><p>The <code>mint</code> command creates new tokens by using <code>send</code> to create a new transaction. Then it waits for that transaction to confirm:</p><pre><code>node index.js mint dcd32b87270aeb980333213da2549c9907e09e94 10000
+<p>Next, we are going to mint some new tokens using recryptjs. And because minting token changes the blockchain, we&apos;ll use <code>send</code>.</p><h1 id="mint-tokens-with-send"><a name="mint-tokens-with-send" class="plugin-anchor" href="#mint-tokens-with-send"><i class="fa fa-link" aria-hidden="true"></i></a>Mint Tokens With Send</h1><p>The <code>mint</code> command creates new tokens by using <code>send</code> to create a new transaction. Then it waits for that transaction to confirm:</p><pre><code>node index.js mint dcd32b87270aeb980333213da2549c9907e09e94 10000
 
 mint tx: 469d0e6a1e1a421c84cd009b983fc153aa5db7da26fa1f89837f2731fa75586c
 { amount: 0,
@@ -669,7 +669,7 @@ balance: 23700</code></pre>
   Transfer(msg.sender, _to, _value);
   <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
 }</code></pre>
-<p>Note that the API does not require the <code>_from</code> address. It is assumed that <code>msg.sender</code> is the source of the token balance to transfer from.</p><p>Ah, <code>msg.sender</code>, our old nemesis.</p><p>As we&apos;ve learned in <a href="erc20-token.html#the-owner-UTXO-address">The Owner UTXO Address</a>, QTUM doesn&apos;t really have the idea of an &quot;account&quot;. The <code>msg.sender</code> is the address of whatever UTXO that was used to pay for the transaction.</p><p>To act as <code>dcb3...9e94</code>, we need to explicitly specify an UTXO that has the same address. We can do this by using the <code>senderAddress</code> option.</p><pre><code class="lang-js"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">transfer</span>(<span class="hljs-params">fromAddr, toAddr, amount</span>) </span>{
+<p>Note that the API does not require the <code>_from</code> address. It is assumed that <code>msg.sender</code> is the source of the token balance to transfer from.</p><p>Ah, <code>msg.sender</code>, our old nemesis.</p><p>As we&apos;ve learned in <a href="erc20-token.html#the-owner-UTXO-address">The Owner UTXO Address</a>, RECRYPT doesn&apos;t really have the idea of an &quot;account&quot;. The <code>msg.sender</code> is the address of whatever UTXO that was used to pay for the transaction.</p><p>To act as <code>dcb3...9e94</code>, we need to explicitly specify an UTXO that has the same address. We can do this by using the <code>senderAddress</code> option.</p><pre><code class="lang-js"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">transfer</span>(<span class="hljs-params">fromAddr, toAddr, amount</span>) </span>{
   <span class="hljs-keyword">const</span> tx = <span class="hljs-keyword">await</span> myToken.send(<span class="hljs-string">&quot;transfer&quot;</span>, [toAddr, amount], {
     senderAddress: fromAddr,
   })
@@ -684,7 +684,7 @@ balance: 23700</code></pre>
 }</code></pre>
 <p>In the above code, the third argument of <code>send</code> allows you to specify the <code>msg.sender</code>. Remember to <a href="http://localhost:4000/part2/erc20-token.html#prefunding-the-owner-address" target="_blank">prefund</a> this address with UTXOs.</p><p>There are other options you can specify for send. The full type definition is <code>IContractSendRequestOptions</code>:</p><pre><code class="lang-js"><span class="hljs-keyword">export</span> interface IContractSendRequestOptions {
   <span class="hljs-comment">/**
-   * The amount in QTUM to send. eg 0.1, default: 0
+   * The amount in RECRYPT to send. eg 0.1, default: 0
    */</span>
   amount?: number | string
 
@@ -694,7 +694,7 @@ balance: 23700</code></pre>
   gasLimit?: number
 
   <span class="hljs-comment">/**
-   * Qtum price per gas unit, default: 0.00000001, min:0.00000001
+   * Recrypt price per gas unit, default: 0.00000001, min:0.00000001
    */</span>
   gasPrice?: number | string
 
@@ -715,7 +715,7 @@ qcli gethexaddress qXuvswhQ9Vjza8AFj1vmUL4N531CDVoWsz
 
 transfer tx: a1ba017b3974b98bf9c8edc824c3abc0ce17678a14e7cfac94b5900a290bdd07
 &#x2714; confirm transfer</code></pre>
-<blockquote><p>Note that we MUST specify the senderAddress using base58 address format. We&apos;ll fix this in the future. See: <a href="https://github.com/qtumproject/qtumjs/issues/2" target="_blank">qtumjs issues#2</a></p></blockquote><p>We can then verify that <code>9d74...9cc6</code> had indeed received the tokens:</p><pre><code>node index.js balance 9d748f98e65c6875dbed7bfb6ffbeca426ff9cc6
+<blockquote><p>Note that we MUST specify the senderAddress using base58 address format. We&apos;ll fix this in the future. See: <a href="https://github.com/recryptproject/recryptjs/issues/2" target="_blank">recryptjs issues#2</a></p></blockquote><p>We can then verify that <code>9d74...9cc6</code> had indeed received the tokens:</p><pre><code>node index.js balance 9d748f98e65c6875dbed7bfb6ffbeca426ff9cc6
 
 balance: 100</code></pre>
 <p>And that the origin account&apos;s balance decremented by 100:</p><pre><code>node index.js balance dcd32b87270aeb980333213da2549c9907e09e94
@@ -726,7 +726,7 @@ balance: 23600</code></pre>
   address indexed to,
   uint256 value
 );</code></pre>
-<p>Let&apos;s use qtumjs to subscribe to the stream of contract events, so we can react in a timely manner when a transfer occurs. The code:</p><pre><code class="lang-js"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">streamEvents</span>(<span class="hljs-params"></span>) </span>{
+<p>Let&apos;s use recryptjs to subscribe to the stream of contract events, so we can react in a timely manner when a transfer occurs. The code:</p><pre><code class="lang-js"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">streamEvents</span>(<span class="hljs-params"></span>) </span>{
   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Subscribed to contract events&quot;</span>)
   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Ctrl-C to terminate events subscription&quot;</span>)
 
@@ -777,13 +777,13 @@ mint tx: c0e3007178a1b9e05b33e770f7a0e7d084f2d06732658524be042dc0e9864cc4</code>
      from: &apos;0x0000000000000000000000000000000000000000&apos;,
      to: &apos;0xdcd32b87270aeb980333213da2549c9907e09e94&apos;,
      value: &lt;BN: 2710&gt; } }</code></pre>
-<blockquote><p>If you are running your own qtumd node instead of the provided docker image, you&apos;ll need to enable <code>-logevents</code> for events logging to work. See: <a href="https://github.com/hayeah/qtum-docker/blob/b6a556033a91ce7a60c40a3f7dfc6742d2c9a761/dapp/qtumd-launch#L25" target="_blank">qtum-docker/dapp</a>.</p></blockquote><h1 id="conclusion"><a name="conclusion" class="plugin-anchor" href="#conclusion"><i class="fa fa-link" aria-hidden="true"></i></a>Conclusion</h1><p>In this chapter we&apos;ve developed a simple NodeJS CLI tool to interact with an ERC20 contract.</p><ul><li>qtumjs is a Promise-based API. Use async/await to write clean asynchronous code.
+<blockquote><p>If you are running your own recryptd node instead of the provided docker image, you&apos;ll need to enable <code>-logevents</code> for events logging to work. See: <a href="https://github.com/hayeah/recrypt-docker/blob/b6a556033a91ce7a60c40a3f7dfc6742d2c9a761/dapp/recryptd-launch#L25" target="_blank">recrypt-docker/dapp</a>.</p></blockquote><h1 id="conclusion"><a name="conclusion" class="plugin-anchor" href="#conclusion"><i class="fa fa-link" aria-hidden="true"></i></a>Conclusion</h1><p>In this chapter we&apos;ve developed a simple NodeJS CLI tool to interact with an ERC20 contract.</p><ul><li>recryptjs is a Promise-based API. Use async/await to write clean asynchronous code.
 </li>
 <li><code>call</code> is like &quot;query&quot;, <code>send</code> is like &quot;commit&quot;.
 </li>
 <li>Use <code>senderAddress</code> to in <code>call</code> or <code>send</code> to specify the <code>msg.owner</code>.
 </li></ul>
-<p>Now that you know how to use qtumjs, you are ready to build a DApp, and be on your way to fame and riches!</p>
+<p>Now that you know how to use recryptjs, you are ready to build a DApp, and be on your way to fame and riches!</p>
                                 
                                 </section>
                             
@@ -826,7 +826,7 @@ mint tx: c0e3007178a1b9e05b33e770f7a0e7d084f2d06732658524be042dc0e9864cc4</code>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"ERC20 With QtumJS","level":"3.2","depth":1,"next":{"title":"Load Contract","level":"3.2.1","depth":2,"anchor":"#getting-the-total-supply","path":"part2/erc20-js.md","ref":"./part2/erc20-js.md#getting-the-total-supply","articles":[]},"previous":{"title":"ABIPlayer","level":"3.1.4","depth":2,"anchor":"#using-abiplayer","path":"part2/erc20-token.md","ref":"part2/erc20-token.md#using-abiplayer","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["anchors"],"pluginsConfig":{"anchors":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"part2/erc20-js.md","mtime":"2018-02-08T10:41:42.000Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2018-04-26T10:31:38.680Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"ERC20 With RecryptJS","level":"3.2","depth":1,"next":{"title":"Load Contract","level":"3.2.1","depth":2,"anchor":"#getting-the-total-supply","path":"part2/erc20-js.md","ref":"./part2/erc20-js.md#getting-the-total-supply","articles":[]},"previous":{"title":"ABIPlayer","level":"3.1.4","depth":2,"anchor":"#using-abiplayer","path":"part2/erc20-token.md","ref":"part2/erc20-token.md#using-abiplayer","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["anchors"],"pluginsConfig":{"anchors":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"part2/erc20-js.md","mtime":"2018-02-08T10:41:42.000Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2018-04-26T10:31:38.680Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

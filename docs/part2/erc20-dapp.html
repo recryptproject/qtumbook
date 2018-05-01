@@ -109,16 +109,16 @@
 
     
         
-        <li class="header">Part 1 - Running QTUM</li>
+        <li class="header">Part 1 - Running RECRYPT</li>
         
         
     
-        <li class="chapter " data-level="2.1" data-path="../part1/qtum-docker.html">
+        <li class="chapter " data-level="2.1" data-path="../part1/recrypt-docker.html">
             
-                <a href="../part1/qtum-docker.html">
+                <a href="../part1/recrypt-docker.html">
             
                     
-                    QTUM Docker Container
+                    RECRYPT Docker Container
             
                 </a>
             
@@ -127,9 +127,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="2.1.1" data-path="../part1/qtum-docker.html">
+        <li class="chapter " data-level="2.1.1" data-path="../part1/recrypt-docker.html">
             
-                <a href="../part1/qtum-docker.html#running-regtest-mode">
+                <a href="../part1/recrypt-docker.html#running-regtest-mode">
             
                     
                     Tip: regtest Mode
@@ -140,9 +140,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.1.2" data-path="../part1/qtum-docker.html">
+        <li class="chapter " data-level="2.1.2" data-path="../part1/recrypt-docker.html">
             
-                <a href="../part1/qtum-docker.html#new-blocks-on-demand">
+                <a href="../part1/recrypt-docker.html#new-blocks-on-demand">
             
                     
                     Tip: New Blocks On Demand
@@ -153,9 +153,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.1.3" data-path="../part1/qtum-docker-codenvy/">
+        <li class="chapter " data-level="2.1.3" data-path="../part1/recrypt-docker-codenvy/">
             
-                <a href="../part1/qtum-docker-codenvy/">
+                <a href="../part1/recrypt-docker-codenvy/">
             
                     
                     Docker In Browser
@@ -299,7 +299,7 @@
                 <a href="erc20-js.html">
             
                     
-                    ERC20 With QtumJS
+                    ERC20 With RecryptJS
             
                 </a>
             
@@ -497,7 +497,7 @@
 </li>
 <li>Display information about transactions made, e.g. number of confirmations.
 </li></ul>
-<p>It looks something like this:</p><p><img src="erc20-dapp/erc20-dapp.jpg"></p><p>The only additional complication is that we no longer allow DApp to create a transaction without user permission. Now for every transaction, we should give the user an opportunity to approve or deny it:</p><p><img src="erc20-dapp/auth-ui.jpg"></p><p>The ERC20 DApp is more complex than the CLI App, because it needs to track multiple transactions, and update the UI when a new confirmation occurs.</p><p>We will use <a href="https://mobx.js.org/" target="_blank">mobx.js</a>, a reactive programming framework, to keep data and view synchronized.</p><p>You can get the code at <a href="https://github.com/qtumproject/qtumjs-dapp-erc20" target="_blank">qtumproject/qtumjs-dapp-erc20</a>, and use it to jump start your own DApp project.</p><h1 id="brief-intro-to-reactive-programming"><a name="brief-intro-to-reactive-programming" class="plugin-anchor" href="#brief-intro-to-reactive-programming"><i class="fa fa-link" aria-hidden="true"></i></a>Brief Intro To Reactive Programming</h1><p>Most of the complexity in GUI programming is in synchronizing the underlying data and the UI state. When data changes, the UI also needs to change. Conversely, when the UI changes (say user inputs a number), the data needs to change.</p><p>It is tedious and error-prone to keep the UI and data in sync.</p><p>It&apos;d be nice to bind the UI and data, so they always change together. <code>mobx</code> provides the tool to do that, and it is almost indistinguishable from magic.</p><p>Let&apos;s first see how we manually update UI without reactive programming, then we&apos;ll see how mobx automates that process.</p><h2 id="manual-ui-update"><a name="manual-ui-update" class="plugin-anchor" href="#manual-ui-update"><i class="fa fa-link" aria-hidden="true"></i></a>Manual UI Update</h2><p>Suppose the data is:</p><pre><code class="lang-js"><span class="hljs-keyword">const</span> obj = {
+<p>It looks something like this:</p><p><img src="erc20-dapp/erc20-dapp.jpg"></p><p>The only additional complication is that we no longer allow DApp to create a transaction without user permission. Now for every transaction, we should give the user an opportunity to approve or deny it:</p><p><img src="erc20-dapp/auth-ui.jpg"></p><p>The ERC20 DApp is more complex than the CLI App, because it needs to track multiple transactions, and update the UI when a new confirmation occurs.</p><p>We will use <a href="https://mobx.js.org/" target="_blank">mobx.js</a>, a reactive programming framework, to keep data and view synchronized.</p><p>You can get the code at <a href="https://github.com/recryptproject/recryptjs-dapp-erc20" target="_blank">recryptproject/recryptjs-dapp-erc20</a>, and use it to jump start your own DApp project.</p><h1 id="brief-intro-to-reactive-programming"><a name="brief-intro-to-reactive-programming" class="plugin-anchor" href="#brief-intro-to-reactive-programming"><i class="fa fa-link" aria-hidden="true"></i></a>Brief Intro To Reactive Programming</h1><p>Most of the complexity in GUI programming is in synchronizing the underlying data and the UI state. When data changes, the UI also needs to change. Conversely, when the UI changes (say user inputs a number), the data needs to change.</p><p>It is tedious and error-prone to keep the UI and data in sync.</p><p>It&apos;d be nice to bind the UI and data, so they always change together. <code>mobx</code> provides the tool to do that, and it is almost indistinguishable from magic.</p><p>Let&apos;s first see how we manually update UI without reactive programming, then we&apos;ll see how mobx automates that process.</p><h2 id="manual-ui-update"><a name="manual-ui-update" class="plugin-anchor" href="#manual-ui-update"><i class="fa fa-link" aria-hidden="true"></i></a>Manual UI Update</h2><p>Suppose the data is:</p><pre><code class="lang-js"><span class="hljs-keyword">const</span> obj = {
   a: <span class="hljs-number">1</span>,
   b: <span class="hljs-number">2</span>,
 }</code></pre>
@@ -528,27 +528,27 @@
 autorun(() =&gt; {
   renderView(obj)
 })</code></pre>
-<p>You can <a href="https://codepen.io/hayeah/pen/MrEVxy?editors=1011" target="_blank">try this example on codepen.io</a>.  Modify <code>obj</code> in the provided console, and see the view changing.</p><p><img src="erc20-dapp/mobx-reaction.jpg"></p><blockquote><p>Note: In actual React code, we won&apos;t explicitly call <code>autorun</code>, the framework handles it. But the idea is the same, modify an object, and the components that uses the object would automatically re-render.</p></blockquote><h1 id="running-the-project"><a name="running-the-project" class="plugin-anchor" href="#running-the-project"><i class="fa fa-link" aria-hidden="true"></i></a>Running The Project</h1><p>Clone the project:</p><pre><code>git clone https://github.com/qtumproject/qtumjs-dapp-erc20.git</code></pre>
+<p>You can <a href="https://codepen.io/hayeah/pen/MrEVxy?editors=1011" target="_blank">try this example on codepen.io</a>.  Modify <code>obj</code> in the provided console, and see the view changing.</p><p><img src="erc20-dapp/mobx-reaction.jpg"></p><blockquote><p>Note: In actual React code, we won&apos;t explicitly call <code>autorun</code>, the framework handles it. But the idea is the same, modify an object, and the components that uses the object would automatically re-render.</p></blockquote><h1 id="running-the-project"><a name="running-the-project" class="plugin-anchor" href="#running-the-project"><i class="fa fa-link" aria-hidden="true"></i></a>Running The Project</h1><p>Clone the project:</p><pre><code>git clone https://github.com/recryptproject/recryptjs-dapp-erc20.git</code></pre>
 <p>Install project dependencies:</p><pre><code>yarn install
 # or: npm install</code></pre>
-<p>Like the nodejs CLI tool, we&apos;ll need to make the information about deployed contracts available. Let&apos;s copy/link <code>solar.development.json</code> into the project:</p><pre><code>ln -s ~/qtumbook/examples/mytoken/solar.development.json solar.development.json</code></pre>
+<p>Like the nodejs CLI tool, we&apos;ll need to make the information about deployed contracts available. Let&apos;s copy/link <code>solar.development.json</code> into the project:</p><pre><code>ln -s ~/recryptbook/examples/mytoken/solar.development.json solar.development.json</code></pre>
 <p>Then start the web server:</p><pre><code>npm start
 
-&gt; qutm-portal-ui@0.0.1 start /Users/howard/p/qtum/qtumjs-dapp-erc20
+&gt; qutm-portal-ui@0.0.1 start /Users/howard/p/recrypt/recryptjs-dapp-erc20
 &gt; neutrino start
 
 &#x2714; Development server running on: http://localhost:3000
 &#x2714; Build completed</code></pre>
-<p>Open <a href="http://localhost:3000" target="_blank">http://localhost:3000</a>, you should see:</p><p><img src="erc20-dapp/initial-view.jpg"></p><h2 id="project-structure"><a name="project-structure" class="plugin-anchor" href="#project-structure"><i class="fa fa-link" aria-hidden="true"></i></a>Project Structure</h2><ul><li><a href="https://github.com/qtumproject/qtumjs-dapp-erc20/blob/master/src/index.tsx" target="_blank">src/index.ts</a>: the entry of the project, doing a little bit of setup.
+<p>Open <a href="http://localhost:3000" target="_blank">http://localhost:3000</a>, you should see:</p><p><img src="erc20-dapp/initial-view.jpg"></p><h2 id="project-structure"><a name="project-structure" class="plugin-anchor" href="#project-structure"><i class="fa fa-link" aria-hidden="true"></i></a>Project Structure</h2><ul><li><a href="https://github.com/recryptproject/recryptjs-dapp-erc20/blob/master/src/index.tsx" target="_blank">src/index.ts</a>: the entry of the project, doing a little bit of setup.
 </li>
-<li><a href="https://github.com/qtumproject/qtumjs-dapp-erc20/tree/master/src/views" target="_blank">src/views</a>: this directory contains all React components.
+<li><a href="https://github.com/recryptproject/recryptjs-dapp-erc20/tree/master/src/views" target="_blank">src/views</a>: this directory contains all React components.
 </li>
-<li><a href="https://github.com/qtumproject/qtumjs-dapp-erc20/blob/master/src/Store.ts" target="_blank">src/Store.ts</a>: this observable object manages the logic and data of the application.
+<li><a href="https://github.com/recryptproject/recryptjs-dapp-erc20/blob/master/src/Store.ts" target="_blank">src/Store.ts</a>: this observable object manages the logic and data of the application.
 </li></ul>
-<p>The <code>rpc</code> and <code>myToken</code> instances are initialized with two global constants:</p><pre><code class="lang-js"><span class="hljs-keyword">const</span> rpc = <span class="hljs-keyword">new</span> QtumRPC(QTUM_RPC)
+<p>The <code>rpc</code> and <code>myToken</code> instances are initialized with two global constants:</p><pre><code class="lang-js"><span class="hljs-keyword">const</span> rpc = <span class="hljs-keyword">new</span> RecryptRPC(RECRYPT_RPC)
 
 <span class="hljs-keyword">const</span> myToken = <span class="hljs-keyword">new</span> Contract(rpc, SOLAR_REPO.contracts[<span class="hljs-string">&quot;zeppelin-solidity/contracts/token/CappedToken.sol&quot;</span>])</code></pre>
-<p>The constants <code>QTUM_RPC</code> and <code>SOLAR_REPO</code> are defined in <a href="https://github.com/qtumproject/qtumjs-dapp-erc20/blob/master/config/development.js" target="_blank">config/development.js</a>.</p><h1 id="display-total-supply"><a name="display-total-supply" class="plugin-anchor" href="#display-total-supply"><i class="fa fa-link" aria-hidden="true"></i></a>Display Total Supply</h1><p><code>Store</code> is an observable object. If the <code>totalSupply</code> property changes, the React component that uses it would update.</p><p>When the app first loads, it calls <code>updateTotalSupply</code> to get the total supply. The simplified <code>Store</code> code:</p><pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Store</span> </span>{
+<p>The constants <code>RECRYPT_RPC</code> and <code>SOLAR_REPO</code> are defined in <a href="https://github.com/recryptproject/recryptjs-dapp-erc20/blob/master/config/development.js" target="_blank">config/development.js</a>.</p><h1 id="display-total-supply"><a name="display-total-supply" class="plugin-anchor" href="#display-total-supply"><i class="fa fa-link" aria-hidden="true"></i></a>Display Total Supply</h1><p><code>Store</code> is an observable object. If the <code>totalSupply</code> property changes, the React component that uses it would update.</p><p>When the app first loads, it calls <code>updateTotalSupply</code> to get the total supply. The simplified <code>Store</code> code:</p><pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Store</span> </span>{
   @observable public totalSupply: number = <span class="hljs-number">0</span>
 
   <span class="hljs-comment">// `updateTotalSupply` is called when app is first loaded</span>
@@ -565,7 +565,7 @@ autorun(() =&gt; {
   <span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span>
   Total Supply
 <span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></code></pre>
-<p><a href="https://github.com/qtumproject/qtumjs-dapp-erc20/blob/92d4aed5128ff5685e23bc1bb4e0b1842e0dccca/src/views/App.tsx#L28-L32" target="_blank">https://github.com/qtumproject/qtumjs-dapp-erc20/blob/92d4aed5128ff5685e23bc1bb4e0b1842e0dccca/src/views/App.tsx#L28-L32</a></p><h2 id="subscribe-to-mint-events"><a name="subscribe-to-mint-events" class="plugin-anchor" href="#subscribe-to-mint-events"><i class="fa fa-link" aria-hidden="true"></i></a>Subscribe To Mint Events</h2><p>Let&apos;s subscribe to the <code>Mint</code> event so we can update the total supply immediately if somebody minted additional tokens. The simplified code:</p><pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Store</span> </span>{
+<p><a href="https://github.com/recryptproject/recryptjs-dapp-erc20/blob/92d4aed5128ff5685e23bc1bb4e0b1842e0dccca/src/views/App.tsx#L28-L32" target="_blank">https://github.com/recryptproject/recryptjs-dapp-erc20/blob/92d4aed5128ff5685e23bc1bb4e0b1842e0dccca/src/views/App.tsx#L28-L32</a></p><h2 id="subscribe-to-mint-events"><a name="subscribe-to-mint-events" class="plugin-anchor" href="#subscribe-to-mint-events"><i class="fa fa-link" aria-hidden="true"></i></a>Subscribe To Mint Events</h2><p>Let&apos;s subscribe to the <code>Mint</code> event so we can update the total supply immediately if somebody minted additional tokens. The simplified code:</p><pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Store</span> </span>{
   @observable.shallow public transferEvents: ITransferLog[] = []
 
   <span class="hljs-comment">// `observeEvents` is called by `init`</span>
@@ -599,7 +599,7 @@ mint tx: 7f0ff25475e2e6e0943fa6fb934999019d7a6a886126c220d0fa7cdcc3c36feb
 &#x2714; confirm mint</code></pre>
 <p>Even though the minting was done outside app, we still get notified. The total supply should increment by 1000, and a new <code>Transfer</code> event should show up in the UI:</p><p><img src="erc20-dapp/new-tokens-minted.jpg"></p><h1 id="transaction-lifecycle-management"><a name="transaction-lifecycle-management" class="plugin-anchor" href="#transaction-lifecycle-management"><i class="fa fa-link" aria-hidden="true"></i></a>Transaction Lifecycle Management</h1><p>In a typical web app, the user clicks a button, and the app makes an HTTP request to the server and get a response back. It&apos;s a simple cycle, and the user does not need to approve the HTTP request, or to know whether the request had been accepted by the server.</p><p>The lifecycle for a transaction has more stages:</p><ol><li>A transaction pending user audit &amp; approval.
 </li>
-<li>A transaction is sent to qtumd, and broadcasted to the network.
+<li>A transaction is sent to recryptd, and broadcasted to the network.
 </li>
 <li>User waits for transaction to reach some number of confirmations.
 </li></ol>
@@ -627,7 +627,7 @@ mint tx: 7f0ff25475e2e6e0943fa6fb934999019d7a6a886126c220d0fa7cdcc3c36feb
 
   <span class="hljs-keyword">try</span> {
     <span class="hljs-comment">// `send` returns if user approved the tx, and the tx had</span>
-    <span class="hljs-comment">// been sent to qtumd.</span>
+    <span class="hljs-comment">// been sent to recryptd.</span>
     <span class="hljs-keyword">const</span> tx = <span class="hljs-keyword">await</span> myToken.send(<span class="hljs-string">&quot;mint&quot;</span>, [toAddress, amount])
 
     <span class="hljs-comment">// Updates txRecord with transaction info. This triggers view update.</span>

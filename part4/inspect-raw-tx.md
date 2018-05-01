@@ -162,13 +162,13 @@ When constructing a transaction, the wallet finds an UTXO that satifies the amou
 
 The input refers to an UTXO, which is the second output of the transaction `39b9...5aa6`. This particular UTXO is worth 20,000.
 
-Since we are only sending 10 qtums, this input is more than enough pay for the transfer itself, as well as the fees.
+Since we are only sending 10 recrypts, this input is more than enough pay for the transfer itself, as well as the fees.
 
 ### Transaction Vouts
 
 The UTXO used is worth 20,000, but we actually only want to spend a smart part of it. Unlike a bank account, it is not possible to partially spend the value of the UTXO.
 
-So what we do is that we spend 10 qtums by sending it to the receiving address, and "spend" the rest of the amount by sending it back to ourself.
+So what we do is that we spend 10 recrypts by sending it to the receiving address, and "spend" the rest of the amount by sending it back to ourself.
 
 The result is that are two outputs in this transaction, creating two new UTXOs.
 

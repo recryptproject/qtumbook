@@ -21,7 +21,7 @@ The ERC20 DApp is more complex than the CLI App, because it needs to track multi
 
 We will use [mobx.js](https://mobx.js.org/), a reactive programming framework, to keep data and view synchronized.
 
-You can get the code at [qtumproject/qtumjs-dapp-erc20](https://github.com/qtumproject/qtumjs-dapp-erc20), and use it to jump start your own DApp project.
+You can get the code at [recryptproject/recryptjs-dapp-erc20](https://github.com/recryptproject/recryptjs-dapp-erc20), and use it to jump start your own DApp project.
 
 # Brief Intro To Reactive Programming
 
@@ -118,7 +118,7 @@ You can [try this example on codepen.io](https://codepen.io/hayeah/pen/MrEVxy?ed
 Clone the project:
 
 ```
-git clone https://github.com/qtumproject/qtumjs-dapp-erc20.git
+git clone https://github.com/recryptproject/recryptjs-dapp-erc20.git
 ```
 
 Install project dependencies:
@@ -131,7 +131,7 @@ yarn install
 Like the nodejs CLI tool, we'll need to make the information about deployed contracts available. Let's copy/link `solar.development.json` into the project:
 
 ```
-ln -s ~/qtumbook/examples/mytoken/solar.development.json solar.development.json
+ln -s ~/recryptbook/examples/mytoken/solar.development.json solar.development.json
 ```
 
 Then start the web server:
@@ -139,7 +139,7 @@ Then start the web server:
 ```
 npm start
 
-> qutm-portal-ui@0.0.1 start /Users/howard/p/qtum/qtumjs-dapp-erc20
+> qutm-portal-ui@0.0.1 start /Users/howard/p/recrypt/recryptjs-dapp-erc20
 > neutrino start
 
 ✔ Development server running on: http://localhost:3000
@@ -152,19 +152,19 @@ Open http://localhost:3000, you should see:
 
 ## Project Structure
 
-* [src/index.ts](https://github.com/qtumproject/qtumjs-dapp-erc20/blob/master/src/index.tsx): the entry of the project, doing a little bit of setup.
-* [src/views](https://github.com/qtumproject/qtumjs-dapp-erc20/tree/master/src/views): this directory contains all React components.
-* [src/Store.ts](https://github.com/qtumproject/qtumjs-dapp-erc20/blob/master/src/Store.ts): this observable object manages the logic and data of the application.
+* [src/index.ts](https://github.com/recryptproject/recryptjs-dapp-erc20/blob/master/src/index.tsx): the entry of the project, doing a little bit of setup.
+* [src/views](https://github.com/recryptproject/recryptjs-dapp-erc20/tree/master/src/views): this directory contains all React components.
+* [src/Store.ts](https://github.com/recryptproject/recryptjs-dapp-erc20/blob/master/src/Store.ts): this observable object manages the logic and data of the application.
 
 The `rpc` and `myToken` instances are initialized with two global constants:
 
 ```js
-const rpc = new QtumRPC(QTUM_RPC)
+const rpc = new RecryptRPC(RECRYPT_RPC)
 
 const myToken = new Contract(rpc, SOLAR_REPO.contracts["zeppelin-solidity/contracts/token/CappedToken.sol"])
 ```
 
-The constants `QTUM_RPC` and `SOLAR_REPO` are defined in [config/development.js](https://github.com/qtumproject/qtumjs-dapp-erc20/blob/master/config/development.js).
+The constants `RECRYPT_RPC` and `SOLAR_REPO` are defined in [config/development.js](https://github.com/recryptproject/recryptjs-dapp-erc20/blob/master/config/development.js).
 
 
 # Display Total Supply
@@ -199,7 +199,7 @@ Simply by setting `this.totalSupply`, the view that uses it would get re-rendere
 </h1>
 ```
 
-https://github.com/qtumproject/qtumjs-dapp-erc20/blob/92d4aed5128ff5685e23bc1bb4e0b1842e0dccca/src/views/App.tsx#L28-L32
+https://github.com/recryptproject/recryptjs-dapp-erc20/blob/92d4aed5128ff5685e23bc1bb4e0b1842e0dccca/src/views/App.tsx#L28-L32
 
 ## Subscribe To Mint Events
 
@@ -264,7 +264,7 @@ In a typical web app, the user clicks a button, and the app makes an HTTP reques
 The lifecycle for a transaction has more stages:
 
 1. A transaction pending user audit & approval.
-2. A transaction is sent to qtumd, and broadcasted to the network.
+2. A transaction is sent to recryptd, and broadcasted to the network.
 3. User waits for transaction to reach some number of confirmations.
 
 Your app may need to give indication as to where transactions are in each of these stages.
@@ -302,7 +302,7 @@ public async mintTokens(toAddress: string, amount: number) {
 
   try {
     // `send` returns if user approved the tx, and the tx had
-    // been sent to qtumd.
+    // been sent to recryptd.
     const tx = await myToken.send("mint", [toAddress, amount])
 
     // Updates txRecord with transaction info. This triggers view update.

@@ -109,16 +109,16 @@
 
     
         
-        <li class="header">Part 1 - Running QTUM</li>
+        <li class="header">Part 1 - Running RECRYPT</li>
         
         
     
-        <li class="chapter " data-level="2.1" data-path="../part1/qtum-docker.html">
+        <li class="chapter " data-level="2.1" data-path="../part1/recrypt-docker.html">
             
-                <a href="../part1/qtum-docker.html">
+                <a href="../part1/recrypt-docker.html">
             
                     
-                    QTUM Docker Container
+                    RECRYPT Docker Container
             
                 </a>
             
@@ -127,9 +127,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="2.1.1" data-path="../part1/qtum-docker.html">
+        <li class="chapter " data-level="2.1.1" data-path="../part1/recrypt-docker.html">
             
-                <a href="../part1/qtum-docker.html#running-regtest-mode">
+                <a href="../part1/recrypt-docker.html#running-regtest-mode">
             
                     
                     Tip: regtest Mode
@@ -140,9 +140,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.1.2" data-path="../part1/qtum-docker.html">
+        <li class="chapter " data-level="2.1.2" data-path="../part1/recrypt-docker.html">
             
-                <a href="../part1/qtum-docker.html#new-blocks-on-demand">
+                <a href="../part1/recrypt-docker.html#new-blocks-on-demand">
             
                     
                     Tip: New Blocks On Demand
@@ -153,9 +153,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.1.3" data-path="../part1/qtum-docker-codenvy/">
+        <li class="chapter " data-level="2.1.3" data-path="../part1/recrypt-docker-codenvy/">
             
-                <a href="../part1/qtum-docker-codenvy/">
+                <a href="../part1/recrypt-docker-codenvy/">
             
                     
                     Docker In Browser
@@ -299,7 +299,7 @@
                 <a href="../part2/erc20-js.html">
             
                     
-                    ERC20 With QtumJS
+                    ERC20 With RecryptJS
             
                 </a>
             
@@ -590,7 +590,7 @@ qNUAQzJCy4UZXTsUWLdBsgMDfS8yF4nuGD</code></pre>
     }
   ]
 }</code></pre>
-<p>This transaction has one vins (input value) and two vouts (output values).</p><h3 id="transaction-vins"><a name="transaction-vins" class="plugin-anchor" href="#transaction-vins"><i class="fa fa-link" aria-hidden="true"></i></a>Transaction Vins</h3><p>When constructing a transaction, the wallet finds an UTXO that satifies the amount requested.</p><p>The input refers to an UTXO, which is the second output of the transaction <code>39b9...5aa6</code>. This particular UTXO is worth 20,000.</p><p>Since we are only sending 10 qtums, this input is more than enough pay for the transfer itself, as well as the fees.</p><h3 id="transaction-vouts"><a name="transaction-vouts" class="plugin-anchor" href="#transaction-vouts"><i class="fa fa-link" aria-hidden="true"></i></a>Transaction Vouts</h3><p>The UTXO used is worth 20,000, but we actually only want to spend a smart part of it. Unlike a bank account, it is not possible to partially spend the value of the UTXO.</p><p>So what we do is that we spend 10 qtums by sending it to the receiving address, and &quot;spend&quot; the rest of the amount by sending it back to ourself.</p><p>The result is that are two outputs in this transaction, creating two new UTXOs.</p><ul><li>19989.99923200 is the change returning to sender.
+<p>This transaction has one vins (input value) and two vouts (output values).</p><h3 id="transaction-vins"><a name="transaction-vins" class="plugin-anchor" href="#transaction-vins"><i class="fa fa-link" aria-hidden="true"></i></a>Transaction Vins</h3><p>When constructing a transaction, the wallet finds an UTXO that satifies the amount requested.</p><p>The input refers to an UTXO, which is the second output of the transaction <code>39b9...5aa6</code>. This particular UTXO is worth 20,000.</p><p>Since we are only sending 10 recrypts, this input is more than enough pay for the transfer itself, as well as the fees.</p><h3 id="transaction-vouts"><a name="transaction-vouts" class="plugin-anchor" href="#transaction-vouts"><i class="fa fa-link" aria-hidden="true"></i></a>Transaction Vouts</h3><p>The UTXO used is worth 20,000, but we actually only want to spend a smart part of it. Unlike a bank account, it is not possible to partially spend the value of the UTXO.</p><p>So what we do is that we spend 10 recrypts by sending it to the receiving address, and &quot;spend&quot; the rest of the amount by sending it back to ourself.</p><p>The result is that are two outputs in this transaction, creating two new UTXOs.</p><ul><li>19989.99923200 is the change returning to sender.
 </li>
 <li>10 is the amount sent to receiver.
 </li></ul>

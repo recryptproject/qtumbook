@@ -109,16 +109,16 @@
 
     
         
-        <li class="header">Part 1 - Running QTUM</li>
+        <li class="header">Part 1 - Running RECRYPT</li>
         
         
     
-        <li class="chapter " data-level="2.1" data-path="../../part1/qtum-docker.html">
+        <li class="chapter " data-level="2.1" data-path="../../part1/recrypt-docker.html">
             
-                <a href="../../part1/qtum-docker.html">
+                <a href="../../part1/recrypt-docker.html">
             
                     
-                    QTUM Docker Container
+                    RECRYPT Docker Container
             
                 </a>
             
@@ -127,9 +127,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="2.1.1" data-path="../../part1/qtum-docker.html">
+        <li class="chapter " data-level="2.1.1" data-path="../../part1/recrypt-docker.html">
             
-                <a href="../../part1/qtum-docker.html#running-regtest-mode">
+                <a href="../../part1/recrypt-docker.html#running-regtest-mode">
             
                     
                     Tip: regtest Mode
@@ -140,9 +140,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.1.2" data-path="../../part1/qtum-docker.html">
+        <li class="chapter " data-level="2.1.2" data-path="../../part1/recrypt-docker.html">
             
-                <a href="../../part1/qtum-docker.html#new-blocks-on-demand">
+                <a href="../../part1/recrypt-docker.html#new-blocks-on-demand">
             
                     
                     Tip: New Blocks On Demand
@@ -153,9 +153,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.1.3" data-path="../../part1/qtum-docker-codenvy/">
+        <li class="chapter " data-level="2.1.3" data-path="../../part1/recrypt-docker-codenvy/">
             
-                <a href="../../part1/qtum-docker-codenvy/">
+                <a href="../../part1/recrypt-docker-codenvy/">
             
                     
                     Docker In Browser
@@ -299,7 +299,7 @@
                 <a href="../../part2/erc20-js.html">
             
                     
-                    ERC20 With QtumJS
+                    ERC20 With RecryptJS
             
                 </a>
             
@@ -489,7 +489,7 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="simple-crowdsale"><a name="simple-crowdsale" class="plugin-anchor" href="#simple-crowdsale"><i class="fa fa-link" aria-hidden="true"></i></a>Simple Crowdsale</h1><p>In this chapter we will hold a crowdsale using the contracts from Vevue&apos;s ICO. It is essentially an ERC20 token, with the addition of an <code>buyTokens</code> method. When a user sends money into the contract using <code>buyTokens</code>, tokens are minted and credited to the purchaser according to a fixed exchange rate.</p><p>The source code for this chapter is at <a href="https://github.com/qtumproject/qtumjs-vevue-ico" target="_blank">qtumproject/qtumjs-vevue-ico</a>.</p><p>There are a few hard codeed parameters in the token contract, and you could tweak them to suit your particular token design.</p><p>Some of the contract parameters are:</p><ul><li><p><code>decimals</code>: How &quot;divisble&quot; one unit token is.</p><ul><li>8 decimal places, to be as divisible as Bitcoin. The smallest unit is satoshi.
+                                <h1 id="simple-crowdsale"><a name="simple-crowdsale" class="plugin-anchor" href="#simple-crowdsale"><i class="fa fa-link" aria-hidden="true"></i></a>Simple Crowdsale</h1><p>In this chapter we will hold a crowdsale using the contracts from Vevue&apos;s ICO. It is essentially an ERC20 token, with the addition of an <code>buyTokens</code> method. When a user sends money into the contract using <code>buyTokens</code>, tokens are minted and credited to the purchaser according to a fixed exchange rate.</p><p>The source code for this chapter is at <a href="https://github.com/recryptproject/recryptjs-vevue-ico" target="_blank">recryptproject/recryptjs-vevue-ico</a>.</p><p>There are a few hard codeed parameters in the token contract, and you could tweak them to suit your particular token design.</p><p>Some of the contract parameters are:</p><ul><li><p><code>decimals</code>: How &quot;divisble&quot; one unit token is.</p><ul><li>8 decimal places, to be as divisible as Bitcoin. The smallest unit is satoshi.
 </li></ul>
 </li>
 <li><p><code>tokenTotalSupply</code>: The maximum token supply.</p><ul><li>100M tokens in total.
@@ -498,7 +498,7 @@
 <li><p><code>saleAmount</code>: amount of tokens to sell.</p><ul><li>40M tokens for sell
 </li></ul>
 </li>
-<li><p><code>_initialExchangeRate</code>: the exchange rate.</p><ul><li>Set to 1 qtum for 100 tokens.
+<li><p><code>_initialExchangeRate</code>: the exchange rate.</p><ul><li>Set to 1 recrypt for 100 tokens.
 </li></ul>
 </li></ul>
 <p>For simplicity, we disabled the start and end time of the crowdsale (specified in block number).</p><p>Without further ado, let&apos;s launch our crowdsale!</p><h1 id="create-an-owner-address"><a name="create-an-owner-address" class="plugin-anchor" href="#create-an-owner-address"><i class="fa fa-link" aria-hidden="true"></i></a>Create An Owner Address</h1><p>Let&apos;s generate an address to be the owner of the contract. The crowdsale proceeds will go into this address.</p><pre><code>qcli getnewaddress
@@ -507,19 +507,19 @@ qJtdUF9ko4Hk95cqTzq7SDs18dapNwjRNS
 qcli gethexaddress qJtdUF9ko4Hk95cqTzq7SDs18dapNwjRNS
 0e9bfa516890f857beaba3eba35cc478ab10bce4</code></pre>
 <p>Send some fund to the owner address pay for gas:</p><pre><code>qcli sendtoaddress qJtdUF9ko4Hk95cqTzq7SDs18dapNwjRNS 1</code></pre>
-<p>Then we should configure <code>solar</code> to use this address when we deploy new contracts.</p><pre><code>export QTUM_SENDER=qJtdUF9ko4Hk95cqTzq7SDs18dapNwjRNS</code></pre>
+<p>Then we should configure <code>solar</code> to use this address when we deploy new contracts.</p><pre><code>export RECRYPT_SENDER=qJtdUF9ko4Hk95cqTzq7SDs18dapNwjRNS</code></pre>
 <h1 id="deploy-the-token-contract"><a name="deploy-the-token-contract" class="plugin-anchor" href="#deploy-the-token-contract"><i class="fa fa-link" aria-hidden="true"></i></a>Deploy The Token Contract</h1><p>Use solar to deploy the contract:</p><pre><code>solar deploy VevueToken.sol --force
 
 &#x1F680;  All contracts confirmed
    deployed VevueToken.sol =&gt; 09b97cc71a300f1bdad44711f4ce9f25bd404d8b</code></pre>
-<p>Verify that the contract owner is the <code>QTUM_SENDER</code> address that we&apos;ve set before:</p><pre><code>solar status
+<p>Verify that the contract owner is the <code>RECRYPT_SENDER</code> address that we&apos;ve set before:</p><pre><code>solar status
 
 &#x2705;  VevueToken.sol
         txid: 08528ef006f05fdfe1d6eb3006bac7dfc21d6f854822081575b9ff8b61950cdd
      address: 09b97cc71a300f1bdad44711f4ce9f25bd404d8b
    confirmed: true
        owner: qJtdUF9ko4Hk95cqTzq7SDs18dapNwjRNS</code></pre>
-<h2 id="initial-crowdsale-state"><a name="initial-crowdsale-state" class="plugin-anchor" href="#initial-crowdsale-state"><i class="fa fa-link" aria-hidden="true"></i></a>Initial Crowdsale State</h2><p>We can use the included qtumjs script to print out information about the crowdsale:</p><pre><code>node index.js info
+<h2 id="initial-crowdsale-state"><a name="initial-crowdsale-state" class="plugin-anchor" href="#initial-crowdsale-state"><i class="fa fa-link" aria-hidden="true"></i></a>Initial Crowdsale State</h2><p>We can use the included recryptjs script to print out information about the crowdsale:</p><pre><code>node index.js info
 
 supply cap: 100000000.00000000
 sales cap: 40000000.00000000
@@ -533,7 +533,7 @@ tokens sold: 0.0</code></pre>
 qgMR2N4ANuswodFh8T4gYMD3a3VNAd11Jt</code></pre>
 <pre><code>qcli gethexaddress qgMR2N4ANuswodFh8T4gYMD3a3VNAd11Jt
 fa0775ed07771e390c5a3bd2f00cef05bc4185f2</code></pre>
-<p>Now, spend 1 qtum to buy tokens (geting 100 tokens in return):</p><pre><code>node index.js buy fa0775ed07771e390c5a3bd2f00cef05bc4185f2 1</code></pre>
+<p>Now, spend 1 recrypt to buy tokens (geting 100 tokens in return):</p><pre><code>node index.js buy fa0775ed07771e390c5a3bd2f00cef05bc4185f2 1</code></pre>
 <p>After the tx confirms, the token&apos;s supply should have incremented by 100:</p><pre><code>node index.js info
 
 supply cap: 100000000.00000000

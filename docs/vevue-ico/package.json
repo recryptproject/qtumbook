@@ -18,6 +18,6 @@
   },
   "homepage": "https://github.com/vevue/ICOcontracts#readme",
   "dependencies": {
-    "qtumjs": "^1.8.0"
+    "recryptjs": "^1.8.0"
   }
 }

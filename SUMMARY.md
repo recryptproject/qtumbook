@@ -2,12 +2,12 @@
 
 * [Introduction](README.md)
 
-### Part 1 - Running QTUM
+### Part 1 - Running RECRYPT
 
-* [QTUM Docker Container](part1/qtum-docker.md)
-  * [Tip: regtest Mode](part1/qtum-docker.md#running-regtest-mode)
-  * [Tip: New Blocks On Demand](part1/qtum-docker.md#new-blocks-on-demand)
-  * [Docker In Browser](part1/qtum-docker-codenvy/README.md)
+* [RECRYPT Docker Container](part1/recrypt-docker.md)
+  * [Tip: regtest Mode](part1/recrypt-docker.md#running-regtest-mode)
+  * [Tip: New Blocks On Demand](part1/recrypt-docker.md#new-blocks-on-demand)
+  * [Docker In Browser](part1/recrypt-docker-codenvy/README.md)
 * [UTXOs Accounting](part1/utxos-balances.md)
 * [Test & Main Networks](part1/networks.md)
   * [Tip: Free Testnet Tokens](part1/networks.md#getting-testnet-tokens)
@@ -19,7 +19,7 @@
   * [Contract Ownership](part2/erc20-token.md#the-owner-UTXO-address)
   * [Prefund Owner](part2/erc20-token.md#prefunding-the-owner-address)
   * [ABIPlayer](part2/erc20-token.md#using-abiplayer)
-* [ERC20 With QtumJS](part2/erc20-js.md)
+* [ERC20 With RecryptJS](part2/erc20-js.md)
   * [Load Contract](./part2/erc20-js.md#getting-the-total-supply)
   * [Call Method](./part2/erc20-js.md#calling-a-read-only-method)
   * [Send Tx](./part2/erc20-js.md#mint-tokens-with-send)

@@ -109,16 +109,16 @@
 
     
         
-        <li class="header">Part 1 - Running QTUM</li>
+        <li class="header">Part 1 - Running RECRYPT</li>
         
         
     
-        <li class="chapter " data-level="2.1" data-path="../part1/qtum-docker.html">
+        <li class="chapter " data-level="2.1" data-path="../part1/recrypt-docker.html">
             
-                <a href="../part1/qtum-docker.html">
+                <a href="../part1/recrypt-docker.html">
             
                     
-                    QTUM Docker Container
+                    RECRYPT Docker Container
             
                 </a>
             
@@ -127,9 +127,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="2.1.1" data-path="../part1/qtum-docker.html">
+        <li class="chapter " data-level="2.1.1" data-path="../part1/recrypt-docker.html">
             
-                <a href="../part1/qtum-docker.html#running-regtest-mode">
+                <a href="../part1/recrypt-docker.html#running-regtest-mode">
             
                     
                     Tip: regtest Mode
@@ -140,9 +140,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.1.2" data-path="../part1/qtum-docker.html">
+        <li class="chapter " data-level="2.1.2" data-path="../part1/recrypt-docker.html">
             
-                <a href="../part1/qtum-docker.html#new-blocks-on-demand">
+                <a href="../part1/recrypt-docker.html#new-blocks-on-demand">
             
                     
                     Tip: New Blocks On Demand
@@ -153,9 +153,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.1.3" data-path="../part1/qtum-docker-codenvy/">
+        <li class="chapter " data-level="2.1.3" data-path="../part1/recrypt-docker-codenvy/">
             
-                <a href="../part1/qtum-docker-codenvy/">
+                <a href="../part1/recrypt-docker-codenvy/">
             
                     
                     Docker In Browser
@@ -299,7 +299,7 @@
                 <a href="erc20-js.html">
             
                     
-                    ERC20 With QtumJS
+                    ERC20 With RecryptJS
             
                 </a>
             
@@ -489,7 +489,7 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="erc20-token"><a name="erc20-token" class="plugin-anchor" href="#erc20-token"><i class="fa fa-link" aria-hidden="true"></i></a>ERC20 Token</h1><p>In this chapter we will deploy an ERC20 token on QTUM. All ERC20 compliant token contracts support a common set of methods:</p><pre><code>contract ERC20 {
+                                <h1 id="erc20-token"><a name="erc20-token" class="plugin-anchor" href="#erc20-token"><i class="fa fa-link" aria-hidden="true"></i></a>ERC20 Token</h1><p>In this chapter we will deploy an ERC20 token on RECRYPT. All ERC20 compliant token contracts support a common set of methods:</p><pre><code>contract ERC20 {
     function totalSupply() constant returns (uint totalSupply);
     function balanceOf(address _owner) constant returns (uint balance);
     function transfer(address _to, uint _value) returns (bool success);
@@ -501,7 +501,7 @@
     event Approval(address indexed _owner, address indexed _spender, uint _value); }
 }</code></pre>
 <p>Because all tokens share the same interface, it is much easier for wallets and exchanges to support all the different tokens out there in the wild.</p><p>In what follows, we will deploy the
-<a href="https://github.com/OpenZeppelin/zeppelin-solidity/blob/4ce0e211c500aa756120c4f2851cc75518123309/contracts/token/CappedToken.sol" target="_blank">CappedToken</a>, implemented by <a href="https://github.com/OpenZeppelin" target="_blank">OpenZeppelin</a>. We won&apos;t need to modify the contract in any way to make it work on QTUM.</p><p>The <code>CappedToken</code> is an ERC20 compliant token, inheriting the basic functionalities from both <a href="https://github.com/OpenZeppelin/zeppelin-solidity/blob/4ce0e211c500aa756120c4f2851cc75518123309/contracts/token/StandardToken.sol" target="_blank">StandardToken</a> and <a href="https://github.com/OpenZeppelin/zeppelin-solidity/blob/master/contracts/token/MintableToken.sol" target="_blank">MintableToken</a>.</p><p>In particular,</p><ul><li><code>StandardToken</code> implements the ERC20 interface.
+<a href="https://github.com/OpenZeppelin/zeppelin-solidity/blob/4ce0e211c500aa756120c4f2851cc75518123309/contracts/token/CappedToken.sol" target="_blank">CappedToken</a>, implemented by <a href="https://github.com/OpenZeppelin" target="_blank">OpenZeppelin</a>. We won&apos;t need to modify the contract in any way to make it work on RECRYPT.</p><p>The <code>CappedToken</code> is an ERC20 compliant token, inheriting the basic functionalities from both <a href="https://github.com/OpenZeppelin/zeppelin-solidity/blob/4ce0e211c500aa756120c4f2851cc75518123309/contracts/token/StandardToken.sol" target="_blank">StandardToken</a> and <a href="https://github.com/OpenZeppelin/zeppelin-solidity/blob/master/contracts/token/MintableToken.sol" target="_blank">MintableToken</a>.</p><p>In particular,</p><ul><li><code>StandardToken</code> implements the ERC20 interface.
 </li>
 <li><code>MintableToken</code> adds the <code>mint(address _to, uint256 _amount)</code> method, to create new tokens out of thin air.
 </li>
@@ -510,12 +510,12 @@
 <h1 id="deploy-cappedtoken"><a name="deploy-cappedtoken" class="plugin-anchor" href="#deploy-cappedtoken"><i class="fa fa-link" aria-hidden="true"></i></a>Deploy CappedToken</h1><p>Create the project directory, and clone the <a href="https://github.com/OpenZeppelin/zeppelin-solidity" target="_blank">zeppelin-solidity</a> repository to the project directory:</p><pre><code>mkdir mytoken &amp;&amp; cd mytoken
 
 git clone https://github.com/OpenZeppelin/zeppelin-solidity.git</code></pre>
-<p>For this exercise, we&apos;ll start <code>qtumd</code> from scratch, in regtest mode:</p><pre><code>docker run -it --rm \
+<p>For this exercise, we&apos;ll start <code>recryptd</code> from scratch, in regtest mode:</p><pre><code>docker run -it --rm \
   --name myapp \
   -v `pwd`:/dapp \
   -p 9899:9899 \
   -p 9888:9888 \
-  hayeah/qtumportal</code></pre>
+  hayeah/recryptportal</code></pre>
 <p>Enter into the container:</p><pre><code>docker exec -it myapp sh</code></pre>
 <p>Generate some initial balance:</p><pre><code>qcli generate 600</code></pre>
 <h1 id="the-owner-address"><a name="the-owner-address" class="plugin-anchor" href="#the-owner-address"><i class="fa fa-link" aria-hidden="true"></i></a>The Owner Address</h1><p>The ERC20 token we deploy will be &quot;owned&quot; by a particular UTXO address. A few administrative methods are protected, such that only the owner of the contract may use them.</p><p>These methods are protected by the <code>onlyOwner</code> modifier, which checks whether the <code>msg.sender</code> is the contract&apos;s <code>owner</code>:</p><pre><code>modifier onlyOwner() {
@@ -525,7 +525,7 @@ git clone https://github.com/OpenZeppelin/zeppelin-solidity.git</code></pre>
 <p>For example, the method <code>mint</code> makes sure that only the owner can use it:</p><pre><code>function mint(address _to, uint256 _amount) onlyOwner canMint public returns (bool)</code></pre>
 <h2 id="create-the-owner-address-and-fund-it"><a name="create-the-owner-address-and-fund-it" class="plugin-anchor" href="#create-the-owner-address-and-fund-it"><i class="fa fa-link" aria-hidden="true"></i></a>Create The Owner Address And Fund It</h2><p>Let&apos;s generate an address to act as the owner.</p><pre><code>qcli getnewaddress
 qdgznat81MfTHZUrQrLZDZteAx212X4Wjj</code></pre>
-<p>There&apos;s nothing special about this address. You could use the address of any UTXO in your wallet.</p><p>Let&apos;s fund the owner address with 10 QTUM, to pay for gas when we deploy our contract later:</p><pre><code>qcli sendtoaddress qdgznat81MfTHZUrQrLZDZteAx212X4Wjj 10
+<p>There&apos;s nothing special about this address. You could use the address of any UTXO in your wallet.</p><p>Let&apos;s fund the owner address with 10 RECRYPT, to pay for gas when we deploy our contract later:</p><pre><code>qcli sendtoaddress qdgznat81MfTHZUrQrLZDZteAx212X4Wjj 10
 cf652f54e6a6dde3e60fa4e38eee1c529bf4ecf3f8424c7ac7ef9717850cc984</code></pre>
 <p>After the payment confirms, you should that there is one UTXO for this owner address:</p><pre><code>qcli listunspent 1 99999 &apos;[&quot;qdgznat81MfTHZUrQrLZDZteAx212X4Wjj&quot;]&apos;
 [
@@ -541,19 +541,19 @@ cf652f54e6a6dde3e60fa4e38eee1c529bf4ecf3f8424c7ac7ef9717850cc984</code></pre>
     &quot;solvable&quot;: true
   }
 ]</code></pre>
-<p>Finally, we&apos;ll need to configure the deployment tool <code>solar</code> to use this particular address as the owner:</p><pre><code>export QTUM_SENDER=qdgznat81MfTHZUrQrLZDZteAx212X4Wjj</code></pre>
+<p>Finally, we&apos;ll need to configure the deployment tool <code>solar</code> to use this particular address as the owner:</p><pre><code>export RECRYPT_SENDER=qdgznat81MfTHZUrQrLZDZteAx212X4Wjj</code></pre>
 <p>We are now ready to deploy our token contract.</p><h2 id="deploy-the-token-contract"><a name="deploy-the-token-contract" class="plugin-anchor" href="#deploy-the-token-contract"><i class="fa fa-link" aria-hidden="true"></i></a>Deploy The Token Contract</h2><p>The <code>CappedToken</code> constructor requires the <code>_capacity</code> parameter, to specify the maximum number of tokens we can mint:</p><pre><code>function CappedToken(uint256 _capacity)</code></pre>
 <p>It takes quite a few steps to deploy a contract:</p><ol><li>Use the <a href="https://github.com/ethereum/solidity" target="_blank">solidity compiler</a> to compile the contract into bytecode.
 </li>
 <li><a href="https://github.com/ethereum/wiki/wiki/Ethereum-Contract-ABI" target="_blank">ABI encode</a> the <code>_capacity</code> parameter into bytes.
 </li>
-<li>Concatenate 1 and 2 together, then make a <code>createcontract</code> RPC call to qtumd.
+<li>Concatenate 1 and 2 together, then make a <code>createcontract</code> RPC call to recryptd.
 </li>
 <li>Wait for transaction to confirm.
 </li>
 <li>Record the address of the contract, and owner of the contract, for later uses.
 </li></ol>
-<p>The <a href="https://github.com/qtumproject/solar.git" target="_blank">solar</a> Smart Contract deployment tool (included in the container) handles all of this for you.</p><p>To deploy the CappedToken contract, specifying 21 million as the capacity by passing in the constructor parameters as a JSON array (remember to set <code>QTUM_SENDER</code>):</p><pre><code>solar deploy zeppelin-solidity/contracts/token/ERC20/CappedToken.sol \
+<p>The <a href="https://github.com/recryptproject/solar.git" target="_blank">solar</a> Smart Contract deployment tool (included in the container) handles all of this for you.</p><p>To deploy the CappedToken contract, specifying 21 million as the capacity by passing in the constructor parameters as a JSON array (remember to set <code>RECRYPT_SENDER</code>):</p><pre><code>solar deploy zeppelin-solidity/contracts/token/ERC20/CappedToken.sol \
   &apos;[21000000]&apos;</code></pre>
 <p>Then solar waits for confirmation:</p><pre><code>&#x1F680;  All contracts confirmed
    deployed zeppelin-solidity/contracts/token/CappedToken.sol =&gt;
@@ -565,7 +565,7 @@ cf652f54e6a6dde3e60fa4e38eee1c529bf4ecf3f8424c7ac7ef9717850cc984</code></pre>
      address: 3db297ee4c225b45219d2a7aa68afea7f4e68832
    confirmed: true
        owner: qdgznat81MfTHZUrQrLZDZteAx212X4Wjj</code></pre>
-<p>Note that the contract&apos;s owner should be set to the <code>QTUM_SENDER</code> value we have specified earlier. If you did not set <code>QTUM_SENDER</code> to anything, a random UTXO from the wallet is selected, and that become the owner.</p><p>You can find more information about the deployed contracts in <code>solar.development.json</code>.</p><h1 id="the-owner-utxo-address-as-sender"><a name="the-owner-utxo-address-as-sender" class="plugin-anchor" href="#the-owner-utxo-address-as-sender"><i class="fa fa-link" aria-hidden="true"></i></a>The Owner UTXO Address As Sender</h1><p>The main difference between QTUM and Ethereum is that QTUM is built on Bitcoin&apos;s UTXO model, and Ethereum has its own account model, as we&apos;ve seen in the <a href="../part1/UTXOs-balances.md">QTUM UTXO</a> chapter.</p><p>In Ethereum, the cost of a transaction is paid by an account. The amount paid is decremented from the account, but the account is still there.</p><p>UTXO, however, may be spent only once. So earlier we used an UTXO with the address <code>qdgznat81MfTHZUrQrLZDZteAx212X4Wjj</code> to deploy the contract. That UTXO is now gone, with its entire value spent.</p><p>So every time you act as the owner of a contract, you destroy the owner UTXO. And next time you want to act as the owner of the contract, you&apos;d need a new UTXO with the same address. This could be very annoying if you had to do it manually.</p><p>Fortunately, when interacting with a contract, QTUM always create a new UTXO with the same address to replace UTXO that was used up.</p><p>Listing the UTXO for the owner address <code>qdgznat81MfTHZUrQrLZDZteAx212X4Wjj</code>, we see that, hey, there&apos;s still one UTXO, even though we already spent one:</p><pre><code>qcli listunspent 1 99999 &apos;[&quot;qdgznat81MfTHZUrQrLZDZteAx212X4Wjj&quot;]&apos;
+<p>Note that the contract&apos;s owner should be set to the <code>RECRYPT_SENDER</code> value we have specified earlier. If you did not set <code>RECRYPT_SENDER</code> to anything, a random UTXO from the wallet is selected, and that become the owner.</p><p>You can find more information about the deployed contracts in <code>solar.development.json</code>.</p><h1 id="the-owner-utxo-address-as-sender"><a name="the-owner-utxo-address-as-sender" class="plugin-anchor" href="#the-owner-utxo-address-as-sender"><i class="fa fa-link" aria-hidden="true"></i></a>The Owner UTXO Address As Sender</h1><p>The main difference between RECRYPT and Ethereum is that RECRYPT is built on Bitcoin&apos;s UTXO model, and Ethereum has its own account model, as we&apos;ve seen in the <a href="../part1/UTXOs-balances.md">RECRYPT UTXO</a> chapter.</p><p>In Ethereum, the cost of a transaction is paid by an account. The amount paid is decremented from the account, but the account is still there.</p><p>UTXO, however, may be spent only once. So earlier we used an UTXO with the address <code>qdgznat81MfTHZUrQrLZDZteAx212X4Wjj</code> to deploy the contract. That UTXO is now gone, with its entire value spent.</p><p>So every time you act as the owner of a contract, you destroy the owner UTXO. And next time you want to act as the owner of the contract, you&apos;d need a new UTXO with the same address. This could be very annoying if you had to do it manually.</p><p>Fortunately, when interacting with a contract, RECRYPT always create a new UTXO with the same address to replace UTXO that was used up.</p><p>Listing the UTXO for the owner address <code>qdgznat81MfTHZUrQrLZDZteAx212X4Wjj</code>, we see that, hey, there&apos;s still one UTXO, even though we already spent one:</p><pre><code>qcli listunspent 1 99999 &apos;[&quot;qdgznat81MfTHZUrQrLZDZteAx212X4Wjj&quot;]&apos;
 [
   {
     &quot;txid&quot;: &quot;457a5afe15686c0bd596635aeb78d4ff7d2bf6a75df66c7251e89ce4d9c8f6d3&quot;,
@@ -579,10 +579,10 @@ cf652f54e6a6dde3e60fa4e38eee1c529bf4ecf3f8424c7ac7ef9717850cc984</code></pre>
     &quot;solvable&quot;: true
   }
 ]</code></pre>
-<p>Note, however, that the transaction id <code>457a...f6d3</code> is different from the UTXO we had <code>cf65...c984</code>. This is a different UTXO, and its amount is 10 minus the fee we paid to deploy the contract.</p><p>The amount <code>8.78777200</code> is the &quot;change&quot;. For a transaction that interacts with a contract, the &quot;change&quot; is paid to the sender. Whereas in a typical payment transaction, the change is paid to a newly generated address controlled by the wallet.</p><p>The upshot is that despite the vastly different accounting model between Bitcoin UTXO and Ethereum account, in QTUM they behave in very similar ways.</p><h1 id="using-the-abiplayer"><a name="using-the-abiplayer" class="plugin-anchor" href="#using-the-abiplayer"><i class="fa fa-link" aria-hidden="true"></i></a>Using The ABIPlayer</h1><p>The <code>solar.development.json</code> file stores information about the deployed CappedToken contract. You can load this file into the ABIPlayer to interact with any contracts deployed with solar.</p><p>Make sure that the docker container is running, and visit: <a href="http://localhost:9899/abiplay/" target="_blank">http://localhost:9899/abiplay/</a></p><p><img src="erc20-token/abiplayer-empty.jpg"></p><p>Load the file, and you should see a list of available contracts and methods:</p><p><img src="erc20-token/abiplayer-loaded.jpg"></p><p>The gray buttons are readonly methods (call only). The blue buttons support both send and call.</p><p>Let&apos;s click on the <code>owner</code> button, to get the <code>owner</code> of this contract:</p><p><img src="erc20-token/owner-call.jpg"></p><p>And we see the owner address returned as a hexadecimal address:</p><p><img src="erc20-token/owner-call-result.jpg"></p><p>We can convert it back to the base58 UTXO address:</p><pre><code>qcli fromhexaddress dcd32b87270aeb980333213da2549c9907e09e94
+<p>Note, however, that the transaction id <code>457a...f6d3</code> is different from the UTXO we had <code>cf65...c984</code>. This is a different UTXO, and its amount is 10 minus the fee we paid to deploy the contract.</p><p>The amount <code>8.78777200</code> is the &quot;change&quot;. For a transaction that interacts with a contract, the &quot;change&quot; is paid to the sender. Whereas in a typical payment transaction, the change is paid to a newly generated address controlled by the wallet.</p><p>The upshot is that despite the vastly different accounting model between Bitcoin UTXO and Ethereum account, in RECRYPT they behave in very similar ways.</p><h1 id="using-the-abiplayer"><a name="using-the-abiplayer" class="plugin-anchor" href="#using-the-abiplayer"><i class="fa fa-link" aria-hidden="true"></i></a>Using The ABIPlayer</h1><p>The <code>solar.development.json</code> file stores information about the deployed CappedToken contract. You can load this file into the ABIPlayer to interact with any contracts deployed with solar.</p><p>Make sure that the docker container is running, and visit: <a href="http://localhost:9899/abiplay/" target="_blank">http://localhost:9899/abiplay/</a></p><p><img src="erc20-token/abiplayer-empty.jpg"></p><p>Load the file, and you should see a list of available contracts and methods:</p><p><img src="erc20-token/abiplayer-loaded.jpg"></p><p>The gray buttons are readonly methods (call only). The blue buttons support both send and call.</p><p>Let&apos;s click on the <code>owner</code> button, to get the <code>owner</code> of this contract:</p><p><img src="erc20-token/owner-call.jpg"></p><p>And we see the owner address returned as a hexadecimal address:</p><p><img src="erc20-token/owner-call-result.jpg"></p><p>We can convert it back to the base58 UTXO address:</p><pre><code>qcli fromhexaddress dcd32b87270aeb980333213da2549c9907e09e94
 
 qdgznat81MfTHZUrQrLZDZteAx212X4Wjj</code></pre>
-<h1 id="mint-with-abiplayer"><a name="mint-with-abiplayer" class="plugin-anchor" href="#mint-with-abiplayer"><i class="fa fa-link" aria-hidden="true"></i></a>Mint With ABIPlayer</h1><p>Let&apos;s mint some coins for the contract owner! Because we are sending the receiver address into the smart contract, we&apos;ll need to format the address in hexadecimal instead of base58.</p><p>To mint 1000 tokens:</p><p><img src="erc20-token/mint-send.jpg"></p><p>Click send, and you&apos;ll see that the transaction is waiting for authorization:</p><p><img src="erc20-token/mint-waiting-authorization.jpg"></p><p>This request requires your authorization because it costs QTUM. Visit the authorization UI (<a href="http://localhost:9899/" target="_blank">http://localhost:9899/</a>) to approve it:</p><p><img src="erc20-token/mint-auth.jpg"></p><p>Wait for confirmation, and you should see information about the transaction:</p><p><img src="erc20-token/mint-result.jpg"></p><p>You may now call <code>balanceOf</code> and <code>totalSupply</code> to check if the owner had received the minted tokens, and that the supply had increased accordingly:</p><p><img src="erc20-token/mint-balance-supply.jpg"></p><h1 id="conclusion"><a name="conclusion" class="plugin-anchor" href="#conclusion"><i class="fa fa-link" aria-hidden="true"></i></a>Conclusion</h1><p>In this chapter we have deployed a basic ERC20 token, and encounter a few tools along the way:</p><ul><li><code>solar deploy</code> to compile &amp; create a contract.
+<h1 id="mint-with-abiplayer"><a name="mint-with-abiplayer" class="plugin-anchor" href="#mint-with-abiplayer"><i class="fa fa-link" aria-hidden="true"></i></a>Mint With ABIPlayer</h1><p>Let&apos;s mint some coins for the contract owner! Because we are sending the receiver address into the smart contract, we&apos;ll need to format the address in hexadecimal instead of base58.</p><p>To mint 1000 tokens:</p><p><img src="erc20-token/mint-send.jpg"></p><p>Click send, and you&apos;ll see that the transaction is waiting for authorization:</p><p><img src="erc20-token/mint-waiting-authorization.jpg"></p><p>This request requires your authorization because it costs RECRYPT. Visit the authorization UI (<a href="http://localhost:9899/" target="_blank">http://localhost:9899/</a>) to approve it:</p><p><img src="erc20-token/mint-auth.jpg"></p><p>Wait for confirmation, and you should see information about the transaction:</p><p><img src="erc20-token/mint-result.jpg"></p><p>You may now call <code>balanceOf</code> and <code>totalSupply</code> to check if the owner had received the minted tokens, and that the supply had increased accordingly:</p><p><img src="erc20-token/mint-balance-supply.jpg"></p><h1 id="conclusion"><a name="conclusion" class="plugin-anchor" href="#conclusion"><i class="fa fa-link" aria-hidden="true"></i></a>Conclusion</h1><p>In this chapter we have deployed a basic ERC20 token, and encounter a few tools along the way:</p><ul><li><code>solar deploy</code> to compile &amp; create a contract.
 </li>
 <li><code>solar prefund</code> to create UTXOs that has the same address as the contract owner.
 </li>

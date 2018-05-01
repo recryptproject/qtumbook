@@ -109,16 +109,16 @@
 
     
         
-        <li class="header">Part 1 - Running QTUM</li>
+        <li class="header">Part 1 - Running RECRYPT</li>
         
         
     
-        <li class="chapter " data-level="2.1" data-path="qtum-docker.html">
+        <li class="chapter " data-level="2.1" data-path="recrypt-docker.html">
             
-                <a href="qtum-docker.html">
+                <a href="recrypt-docker.html">
             
                     
-                    QTUM Docker Container
+                    RECRYPT Docker Container
             
                 </a>
             
@@ -127,9 +127,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="2.1.1" data-path="qtum-docker.html">
+        <li class="chapter " data-level="2.1.1" data-path="recrypt-docker.html">
             
-                <a href="qtum-docker.html#running-regtest-mode">
+                <a href="recrypt-docker.html#running-regtest-mode">
             
                     
                     Tip: regtest Mode
@@ -140,9 +140,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.1.2" data-path="qtum-docker.html">
+        <li class="chapter " data-level="2.1.2" data-path="recrypt-docker.html">
             
-                <a href="qtum-docker.html#new-blocks-on-demand">
+                <a href="recrypt-docker.html#new-blocks-on-demand">
             
                     
                     Tip: New Blocks On Demand
@@ -153,9 +153,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.1.3" data-path="qtum-docker-codenvy/">
+        <li class="chapter " data-level="2.1.3" data-path="recrypt-docker-codenvy/">
             
-                <a href="qtum-docker-codenvy/">
+                <a href="recrypt-docker-codenvy/">
             
                     
                     Docker In Browser
@@ -299,7 +299,7 @@
                 <a href="../part2/erc20-js.html">
             
                     
-                    ERC20 With QtumJS
+                    ERC20 With RecryptJS
             
                 </a>
             
@@ -489,33 +489,33 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="test--main-networks"><a name="test--main-networks" class="plugin-anchor" href="#test--main-networks"><i class="fa fa-link" aria-hidden="true"></i></a>Test &amp; Main Networks</h1><p>The <code>regtest</code> mode is convenient for local development, but it comes a time when you want to test your smart contracts and DApp on the real network.</p><h1 id="connecting-to-the-testnet"><a name="connecting-to-the-testnet" class="plugin-anchor" href="#connecting-to-the-testnet"><i class="fa fa-link" aria-hidden="true"></i></a>Connecting To The Testnet</h1><p>The docker container connects to different networks depending on which <code>QTUM_NETWORK</code> is specified. By default, <code>regtest</code> is used. To connect to the test network, use <code>testnet</code>:</p><pre><code>docker run -it --rm \
+                                <h1 id="test--main-networks"><a name="test--main-networks" class="plugin-anchor" href="#test--main-networks"><i class="fa fa-link" aria-hidden="true"></i></a>Test &amp; Main Networks</h1><p>The <code>regtest</code> mode is convenient for local development, but it comes a time when you want to test your smart contracts and DApp on the real network.</p><h1 id="connecting-to-the-testnet"><a name="connecting-to-the-testnet" class="plugin-anchor" href="#connecting-to-the-testnet"><i class="fa fa-link" aria-hidden="true"></i></a>Connecting To The Testnet</h1><p>The docker container connects to different networks depending on which <code>RECRYPT_NETWORK</code> is specified. By default, <code>regtest</code> is used. To connect to the test network, use <code>testnet</code>:</p><pre><code>docker run -it --rm \
   --name myapp \
-  -e &quot;QTUM_NETWORK=testnet&quot; \
+  -e &quot;RECRYPT_NETWORK=testnet&quot; \
   -v `pwd`:/dapp \
   -p 9899:9899 \
   -p 9888:9888 \
   -p 3889:3889 \
   -p 13888:13888 \
-  hayeah/qtumportal</code></pre>
+  hayeah/recryptportal</code></pre>
 <ul><li><code>-p 13888:13888</code> is the p2p port for the testnet, so other nodes can connect to you.
 </li></ul>
-<p>It takes some time to download the blockchain data from the network. You&apos;ll see log messages like this stream by:</p><pre><code>06:41:56  qtumd | 2017-12-14 06:41:56 UpdateTip: new best=000054cbb176ed62b2f6fc335204bee4b7ce5f658b8f7cfff6961c25c9a54cf9 height=2094 version=0x20000003 log2_work=27.032757 tx=2095 date=&apos;2017-09-08 05:50:54&apos; progress=0.000638 cache=0.4MiB(2094txo)
-06:41:56  qtumd | 2017-12-14 06:41:56 ProcessNetBlock: ACCEPTED
-06:41:56  qtumd | 2017-12-14 06:41:56 UpdateTip: new best=0000924e3af343bd41f0476b92aeef4e46d748db436d5a5074f337989b7ffba7 height=2095 version=0x20000003 log2_work=27.033445 tx=2096 date=&apos;2017-09-08 05:50:54&apos; progress=0.000638 cache=0.4MiB(2095txo)
-06:41:56  qtumd | 2017-12-14 06:41:56 ProcessNetBlock: ACCEPTED
-06:41:56  qtumd | 2017-12-14 06:41:56 UpdateTip: new best=0000bf6616615286a786f0ec59c3881f48e1b1a49367779f33753a027b099c31 height=2096 version=0x20000003 log2_work=27.034133 tx=2097 date=&apos;2017-09-08 05:50:54&apos; progress=0.000638 cache=0.4MiB(2096txo)
-06:41:56  qtumd | 2017-12-14 06:41:56 ProcessNetBlock: ACCEPTED
+<p>It takes some time to download the blockchain data from the network. You&apos;ll see log messages like this stream by:</p><pre><code>06:41:56  recryptd | 2017-12-14 06:41:56 UpdateTip: new best=000054cbb176ed62b2f6fc335204bee4b7ce5f658b8f7cfff6961c25c9a54cf9 height=2094 version=0x20000003 log2_work=27.032757 tx=2095 date=&apos;2017-09-08 05:50:54&apos; progress=0.000638 cache=0.4MiB(2094txo)
+06:41:56  recryptd | 2017-12-14 06:41:56 ProcessNetBlock: ACCEPTED
+06:41:56  recryptd | 2017-12-14 06:41:56 UpdateTip: new best=0000924e3af343bd41f0476b92aeef4e46d748db436d5a5074f337989b7ffba7 height=2095 version=0x20000003 log2_work=27.033445 tx=2096 date=&apos;2017-09-08 05:50:54&apos; progress=0.000638 cache=0.4MiB(2095txo)
+06:41:56  recryptd | 2017-12-14 06:41:56 ProcessNetBlock: ACCEPTED
+06:41:56  recryptd | 2017-12-14 06:41:56 UpdateTip: new best=0000bf6616615286a786f0ec59c3881f48e1b1a49367779f33753a027b099c31 height=2096 version=0x20000003 log2_work=27.034133 tx=2097 date=&apos;2017-09-08 05:50:54&apos; progress=0.000638 cache=0.4MiB(2096txo)
+06:41:56  recryptd | 2017-12-14 06:41:56 ProcessNetBlock: ACCEPTED
 
 // synchronizing with network...</code></pre>
 <ul><li><code>progress</code> approaches 1.0 (100%) as your local node catch up to the network.
 </li>
 <li><code>height</code> the latest block that had been synced.
 </li></ul>
-<p>Visit the <a href="https://testnet.qtum.org/" target="_blank">Testnet Block Explorer</a> to see some stats about the test network. In particular, it lists the latest blocks mined, so you can get a rough idea of how far along you are in the synchronization process:</p><p><img src="networks/test-explorer.jpg"></p><p>As of Mid-December 2017, the block height is about 50,000ish.</p><h2 id="getting-testnet-tokens"><a name="getting-testnet-tokens" class="plugin-anchor" href="#getting-testnet-tokens"><i class="fa fa-link" aria-hidden="true"></i></a>Getting Testnet Tokens</h2><p>For the testnet you are not allowed to generate or mine new blocks to get tokens. Rather, you can request some free tokens from the testnet faucet:</p><p><a href="http://testnet-faucet.qtum.info" target="_blank">http://testnet-faucet.qtum.info</a></p><p>First generate a new payment address:</p><pre><code>qcli getnewaddress
+<p>Visit the <a href="https://testnet.recrypt.org/" target="_blank">Testnet Block Explorer</a> to see some stats about the test network. In particular, it lists the latest blocks mined, so you can get a rough idea of how far along you are in the synchronization process:</p><p><img src="networks/test-explorer.jpg"></p><p>As of Mid-December 2017, the block height is about 50,000ish.</p><h2 id="getting-testnet-tokens"><a name="getting-testnet-tokens" class="plugin-anchor" href="#getting-testnet-tokens"><i class="fa fa-link" aria-hidden="true"></i></a>Getting Testnet Tokens</h2><p>For the testnet you are not allowed to generate or mine new blocks to get tokens. Rather, you can request some free tokens from the testnet faucet:</p><p><a href="http://testnet-faucet.recrypt.info" target="_blank">http://testnet-faucet.recrypt.info</a></p><p>First generate a new payment address:</p><pre><code>qcli getnewaddress
 
 qcf3Yv72SbLvVDmU99BMf5T1YwvdvA3fx6</code></pre>
-<p>Then copy it into the input box:</p><p><img src="networks/faucet.jpg"></p><p><a href="http://testnet-faucet.qtum.info" target="_blank">http://testnet-faucet.qtum.info</a></p><p>Once accepted, you should see your address and amount in the list of latest payouts:</p><p><img src="networks/faucet-paid.jpg"></p><p>Clicking on the pay out address, you&apos;d see a link to view the transaction in the testnet block explorer:</p><p><img src="networks/faucet-pay-tx.jpg"></p><p><a href="https://testnet.qtum.org/address/qcf3Yv72SbLvVDmU99BMf5T1YwvdvA3fx6" target="_blank">https://testnet.qtum.org/address/qcf3Yv72SbLvVDmU99BMf5T1YwvdvA3fx6</a></p><p>Tapping ctrl-r madly to refresh the browsers again and again, because it&apos;ll help the network to confirm the transaction faster. Once it&apos;s confirmed, you can check your balance locally:</p><pre><code>qcli getbalance
+<p>Then copy it into the input box:</p><p><img src="networks/faucet.jpg"></p><p><a href="http://testnet-faucet.recrypt.info" target="_blank">http://testnet-faucet.recrypt.info</a></p><p>Once accepted, you should see your address and amount in the list of latest payouts:</p><p><img src="networks/faucet-paid.jpg"></p><p>Clicking on the pay out address, you&apos;d see a link to view the transaction in the testnet block explorer:</p><p><img src="networks/faucet-pay-tx.jpg"></p><p><a href="https://testnet.recrypt.org/address/qcf3Yv72SbLvVDmU99BMf5T1YwvdvA3fx6" target="_blank">https://testnet.recrypt.org/address/qcf3Yv72SbLvVDmU99BMf5T1YwvdvA3fx6</a></p><p>Tapping ctrl-r madly to refresh the browsers again and again, because it&apos;ll help the network to confirm the transaction faster. Once it&apos;s confirmed, you can check your balance locally:</p><pre><code>qcli getbalance
 
 94.00000000</code></pre>
 <p>You can also see the UTXOs created for that amount:</p><pre><code>qcli listunspent
@@ -533,11 +533,11 @@ qcf3Yv72SbLvVDmU99BMf5T1YwvdvA3fx6</code></pre>
     &quot;solvable&quot;: true
   }
 ]</code></pre>
-<p>But sorry, there&apos;s no <a href="http://faucet.qtum.info" target="_blank">http://faucet.qtum.info</a> : p</p><h1 id="main-network"><a name="main-network" class="plugin-anchor" href="#main-network"><i class="fa fa-link" aria-hidden="true"></i></a>Main Network</h1><p>To connect to the mainnet, set <code>QTUM_NETWORK=mainnet</code>:</p><pre><code>docker run -it --rm \
+<p>But sorry, there&apos;s no <a href="http://faucet.recrypt.info" target="_blank">http://faucet.recrypt.info</a> : p</p><h1 id="main-network"><a name="main-network" class="plugin-anchor" href="#main-network"><i class="fa fa-link" aria-hidden="true"></i></a>Main Network</h1><p>To connect to the mainnet, set <code>RECRYPT_NETWORK=mainnet</code>:</p><pre><code>docker run -it --rm \
   --name myapp \
-  -e &quot;QTUM_NETWORK=mainnet&quot; \
+  -e &quot;RECRYPT_NETWORK=mainnet&quot; \
   -v `pwd`:/dapp \
-  hayeah/qtumportal</code></pre>
+  hayeah/recryptportal</code></pre>
 <p>Note that we&apos;ve omitted the <code>-p</code> flags, so the network ports are not accessible outside the container.</p><p>It&apos;s safer to do your things by shelling into the container:</p><pre><code>docker exec -it myapp sh</code></pre>
 
                                 

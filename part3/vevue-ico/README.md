@@ -2,7 +2,7 @@
 
 In this chapter we will hold a crowdsale using the contracts from Vevue's ICO. It is essentially an ERC20 token, with the addition of an `buyTokens` method. When a user sends money into the contract using `buyTokens`, tokens are minted and credited to the purchaser according to a fixed exchange rate.
 
-The source code for this chapter is at [qtumproject/qtumjs-vevue-ico](https://github.com/qtumproject/qtumjs-vevue-ico).
+The source code for this chapter is at [recryptproject/recryptjs-vevue-ico](https://github.com/recryptproject/recryptjs-vevue-ico).
 
 There are a few hard codeed parameters in the token contract, and you could tweak them to suit your particular token design.
 
@@ -15,7 +15,7 @@ Some of the contract parameters are:
 + `saleAmount`: amount of tokens to sell.
   + 40M tokens for sell
 + `_initialExchangeRate`: the exchange rate.
-  + Set to 1 qtum for 100 tokens.
+  + Set to 1 recrypt for 100 tokens.
 
 For simplicity, we disabled the start and end time of the crowdsale (specified in block number).
 
@@ -42,7 +42,7 @@ qcli sendtoaddress qJtdUF9ko4Hk95cqTzq7SDs18dapNwjRNS 1
 Then we should configure `solar` to use this address when we deploy new contracts.
 
 ```
-export QTUM_SENDER=qJtdUF9ko4Hk95cqTzq7SDs18dapNwjRNS
+export RECRYPT_SENDER=qJtdUF9ko4Hk95cqTzq7SDs18dapNwjRNS
 ```
 
 # Deploy The Token Contract
@@ -56,7 +56,7 @@ solar deploy VevueToken.sol --force
    deployed VevueToken.sol => 09b97cc71a300f1bdad44711f4ce9f25bd404d8b
 ```
 
-Verify that the contract owner is the `QTUM_SENDER` address that we've set before:
+Verify that the contract owner is the `RECRYPT_SENDER` address that we've set before:
 
 ```
 solar status
@@ -70,7 +70,7 @@ solar status
 
 ## Initial Crowdsale State
 
-We can use the included qtumjs script to print out information about the crowdsale:
+We can use the included recryptjs script to print out information about the crowdsale:
 
 ```
 node index.js info
@@ -99,7 +99,7 @@ qcli gethexaddress qgMR2N4ANuswodFh8T4gYMD3a3VNAd11Jt
 fa0775ed07771e390c5a3bd2f00cef05bc4185f2
 ```
 
-Now, spend 1 qtum to buy tokens (geting 100 tokens in return):
+Now, spend 1 recrypt to buy tokens (geting 100 tokens in return):
 
 ```
 node index.js buy fa0775ed07771e390c5a3bd2f00cef05bc4185f2 1

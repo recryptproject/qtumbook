@@ -16,7 +16,7 @@ The smart contract roles:
 + The token's release agent.
 + The crowdsale finalizing agent.
 
-The full example can be found in the repo [qtumproject/qtumjs-crowdsale-cli](https://github.com/qtumproject/qtumjs-crowdsale-cli).
+The full example can be found in the repo [recryptproject/recryptjs-crowdsale-cli](https://github.com/recryptproject/recryptjs-crowdsale-cli).
 
 ## TL;DR
 
@@ -32,11 +32,11 @@ An outline of the crowdsale process:
     + [If successful, finalize](#success-finalize-the-crowdsale).
     + [If failed, refund](#failure-refund-the-crowdsale).
 
-For a quick overview of the all the commands run for the whole crowdsale process, look at [recipe.sh](https://github.com/qtumproject/qtumjs-crowdsale-cli/blob/master/recipe.sh).
+For a quick overview of the all the commands run for the whole crowdsale process, look at [recipe.sh](https://github.com/recryptproject/recryptjs-crowdsale-cli/blob/master/recipe.sh).
 
-The NodeJS script that interacts with the crowdsale is [index.js](https://github.com/qtumproject/qtumjs-crowdsale-cli/blob/master/index.js).
+The NodeJS script that interacts with the crowdsale is [index.js](https://github.com/recryptproject/recryptjs-crowdsale-cli/blob/master/index.js).
 
-An sample of the deployment data of the contracts involved: [solar.development.json](https://github.com/qtumproject/qtumjs-crowdsale-cli/blob/master/solar.development.json.example).
+An sample of the deployment data of the contracts involved: [solar.development.json](https://github.com/recryptproject/recryptjs-crowdsale-cli/blob/master/solar.development.json.example).
 
 
 # The ICO Design
@@ -61,7 +61,7 @@ This is a crowdsale capped by number of tokens sold.
 
 ## Supply, Allocation, And Pricing
 
-Let's now determine the parameters for this crowdsale. For simplicity, we'll assume that qtum's price is $100 USD.
+Let's now determine the parameters for this crowdsale. For simplicity, we'll assume that recrypt's price is $100 USD.
 
 The name:
 
@@ -81,15 +81,15 @@ The supply allocation is as follows:
 The prices are:
 
 * Presale
-  * Price: 50000 QTUM Satoshi ($0.05 in fiat)
+  * Price: 50000 RECRYPT Satoshi ($0.05 in fiat)
   * Presale tokens: 10,000,000
-  * 2000 MTK : 1 QTUM
-  * Presale amount: 5000 QTUM ($500,000)
+  * 2000 MTK : 1 RECRYPT
+  * Presale amount: 5000 RECRYPT ($500,000)
 * Public ICO
-  * Price: 100000 QTUM Satoshi ($0.1 in fiat)
+  * Price: 100000 RECRYPT Satoshi ($0.1 in fiat)
   * ICO tokens: 60,000,000
-  * 1000 MTK : 1 QTUM
-  * ICO funding: 60000 QTUM ($6,000,000)
+  * 1000 MTK : 1 RECRYPT
+  * ICO funding: 60000 RECRYPT ($6,000,000)
 
 The valuation of the token is 10M post ICO.
 
@@ -99,12 +99,12 @@ Clone contracts:
 
 ```
 git clone --recursive \
-  https://github.com/qtumproject/qtumjs-crowdsale-cli
+  https://github.com/recryptproject/recryptjs-crowdsale-cli
 ```
 
-## Running QTUMD
+## Running RECRYPTD
 
-Run qtumd in regtest mode:
+Run recryptd in regtest mode:
 
 ```
 docker run -it --rm \
@@ -113,7 +113,7 @@ docker run -it --rm \
   -p 3889:3889 \
   -p 9899:9899 \
   -p 9888:9888 \
-  hayeah/qtumportal
+  hayeah/recryptportal
 ```
 
 Then generate some initial blocks:
@@ -144,10 +144,10 @@ Prefund it with 100 UTXOs:
 solar prefund qf292iYbjJ41oMoArA3PrHpxTdAHuQsuAu 0.1 100
 ```
 
-Then we need to configure `solar` to use this address when creating contracts (otherwise a random UTXO would be selected as the owner). In the container shell, set the `QTUM_SENDER` environment variable:
+Then we need to configure `solar` to use this address when creating contracts (otherwise a random UTXO would be selected as the owner). In the container shell, set the `RECRYPT_SENDER` environment variable:
 
 ```
-export QTUM_SENDER=qf292iYbjJ41oMoArA3PrHpxTdAHuQsuAu
+export RECRYPT_SENDER=qf292iYbjJ41oMoArA3PrHpxTdAHuQsuAu
 ```
 
 We will also use the owner address to receive the crowdsale investment.
@@ -215,11 +215,11 @@ function FlatPricing(uint _oneTokenInWei)
 
 https://github.com/TokenMarketNet/ico/blob/f5b3ac6b5773f707943289b6ab1914a6b4e30683/contracts/FlatPricing.sol#L22
 
-Note that this contract was written for Ethereum, whose smallest unit is `wei` (10^-9). However, QTUM inherits its ledger from Bitcoin, whose smallest unit is `satoshi` (10^-8).
+Note that this contract was written for Ethereum, whose smallest unit is `wei` (10^-9). However, RECRYPT inherits its ledger from Bitcoin, whose smallest unit is `satoshi` (10^-8).
 
 So even though the constructor parameter name is `_oneTokenInWei`, what it really means is `_oneTokenInSatoshi`.
 
-The price for the public ICO is 100000 qtum satoshi (1000 MTK : 1 qtum).
+The price for the public ICO is 100000 recrypt satoshi (1000 MTK : 1 recrypt).
 
 ```
 solar deploy contracts/FlatPricing.sol '
@@ -284,7 +284,7 @@ The constructor parameters are described below:
   * `0xeb6a149ec16aaaa6e47b6c0048520f7d9563b20a`, the owner address.
 * `_minimumFundingGoal`, specified in satoshi.
   * Let's set it to 20% of the funding cap.
-  * 60000 qtum * 20% == 12000 qtum == 12000 * 10^8 satoshi == 1200000000000 satoshi
+  * 60000 recrypt * 20% == 12000 recrypt == 12000 * 10^8 satoshi == 1200000000000 satoshi
 * `_maximumSellableTokens`
   * 60,000,000 tokens
 
@@ -344,9 +344,9 @@ solar status
        owner: qf292iYbjJ41oMoArA3PrHpxTdAHuQsuAu
 ```
 
-Make sure that all of them share the same owner. If not, make sure that the environment variable `QTUM_SENDER` is set to the owner address, and try again.
+Make sure that all of them share the same owner. If not, make sure that the environment variable `RECRYPT_SENDER` is set to the owner address, and try again.
 
-You may query for the basic information about these contracts using qtumjs:
+You may query for the basic information about these contracts using recryptjs:
 
 ```ts
 console.log("token supply:", await mytoken.return("totalSupply"))
@@ -355,7 +355,7 @@ console.log("crowdsale start date:", await crowdsale.returnDate("startsAt"))
 console.log("crowdsale end date:", await crowdsale.returnDate("endsAt"))
 
 console.log("investor count:", await crowdsale.return("investorCount"))
-console.log("qtum raised:", await crowdsale.returnCurrency("qtum", "weiRaised"))
+console.log("recrypt raised:", await crowdsale.returnCurrency("recrypt", "weiRaised"))
 console.log("tokens sold:", await crowdsale.return("tokensSold"))
 ```
 
@@ -369,7 +369,7 @@ crowdsale state: Preparing
 crowdsale start date: 2018-01-15T00:00:00.000Z
 crowdsale end date: 2018-03-01T00:00:00.000Z
 investor count: 0
-qtum raised: 0
+recrypt raised: 0
 tokens sold: 0
 ```
 
@@ -433,11 +433,11 @@ crowdsale state: PreFunding
 crowdsale start date: 2018-01-15T00:00:00.000Z
 crowdsale end date: 2018-03-01T00:00:00.000Z
 investor count: 0
-qtum raised: 0
+recrypt raised: 0
 tokens sold: 0
 ```
 
-> The info shows the state as `PreFunding` even if the current time had past the start date. The actual state should be `Funding`. This problem will be fixed by [qtum #480](https://github.com/qtumproject/qtum/issues/480)
+> The info shows the state as `PreFunding` even if the current time had past the start date. The actual state should be `Funding`. This problem will be fixed by [recrypt #480](https://github.com/recryptproject/recrypt/issues/480)
 
 # Presale Pre-Allocation
 
@@ -465,7 +465,7 @@ function preallocate(
 ) public onlyOwner;
 ```
 
-To invoke `preallocate` with qtumjs:
+To invoke `preallocate` with recryptjs:
 
 ```ts
 async function preallocate(receiverAddress, tokens, price) {
@@ -515,7 +515,7 @@ node index.js investedBy \
   77913e470293e72c1e93ed8dda8c1372dfc0274f
 
 invested by: 77913e470293e72c1e93ed8dda8c1372dfc0274f
-amount (qtum): 3000
+amount (recrypt): 3000
 token balance: 6000000
 ```
 
@@ -534,7 +534,7 @@ Check the ledger:
 node index.js investedBy 78d55bb60f8c0e80fda479b02e40407ee0a88ab1
 
 invested by: 78d55bb60f8c0e80fda479b02e40407ee0a88ab1
-amount (qtum): 2000
+amount (recrypt): 2000
 token balance: 4000000
 ```
 
@@ -548,7 +548,7 @@ crowdsale state: PreFunding
 crowdsale start date: 2018-01-15T00:00:00.000Z
 crowdsale end date: 2018-03-01T00:00:00.000Z
 investor count: 0
-qtum raised: 5000
+recrypt raised: 5000
 tokens sold: 10000000
 ```
 
@@ -560,7 +560,7 @@ Once the crowdsale is in the `Funding` state, public investors may start to send
 
 > The precise conditions that determines the state of the crowdsale is defined in the [getState](https://github.com/TokenMarketNet/ico/blob/2835f331fd9a9356131dfcf0ddd2cee471b9e32f/contracts/CrowdsaleBase.sol#L361) method.
 
-The `invest` method sends in an amount of qtum, and receive a corresponding amount of tokens as determined by the pricing strategy. This method is more expensive to compute, so we set a higher gas limit of 300,000:
+The `invest` method sends in an amount of recrypt, and receive a corresponding amount of tokens as determined by the pricing strategy. This method is more expensive to compute, so we set a higher gas limit of 300,000:
 
 ```ts
 async function invest(address, amount) {
@@ -576,7 +576,7 @@ async function invest(address, amount) {
 }
 ```
 
-Invoke the CLI tool to invest 7000 QTUMs:
+Invoke the CLI tool to invest 7000 RECRYPTs:
 
 ```
 node index.js invest \
@@ -590,7 +590,7 @@ After confirmation, we should see that this address had received 3000 MTKs:
 node index.js investedBy 6607919dd81d8e958b31e2ef089139505faada4d
 
 invested by: 6607919dd81d8e958b31e2ef089139505faada4d
-amount (qtum): 7000
+amount (recrypt): 7000
 token balance: 7000000
 ```
 
@@ -600,7 +600,7 @@ And the crowdsale info should have updated as well:
 node index.js info
 
 investor count: 1
-qtum raised: 12000
+recrypt raised: 12000
 tokens sold: 17000000
 minimum funding goal: 12000
 minimum funding goal reached: true
@@ -794,7 +794,7 @@ crowdsale state: PreFunding
 crowdsale start date: 2018-01-15T00:00:00.000Z
 crowdsale end date: 2018-02-08T09:43:00.000Z
 investor count: 1
-qtum raised: 7000
+recrypt raised: 7000
 tokens sold: 7000000
 minimum funding goal: 12000
 minimum funding goal reached: false
@@ -811,9 +811,9 @@ To initiate the refund process:
 
 ```js
 async function loadRefund() {
-  const amountRaised = await crowdsale.returnCurrency("qtum", "weiRaised")
+  const amountRaised = await crowdsale.returnCurrency("recrypt", "weiRaised")
 
-  const loadedRefund = await crowdsale.returnCurrency("qtum", "loadedRefund")
+  const loadedRefund = await crowdsale.returnCurrency("recrypt", "loadedRefund")
 
   const amountToLoad = amountRaised - loadedRefund
 
@@ -836,14 +836,14 @@ node index.js loadRefund
 
 ### Investor Claiming Fund
 
-The amount invested by `6607919dd81d8e958b31e2ef089139505faada4d` should be 7000 qtum:
+The amount invested by `6607919dd81d8e958b31e2ef089139505faada4d` should be 7000 recrypt:
 
 ```
 node index.js investedBy \
  6607919dd81d8e958b31e2ef089139505faada4d
 
 invested by: 6607919dd81d8e958b31e2ef089139505faada4d
-amount (qtum): 7000
+amount (recrypt): 7000
 token balance: 7000000
 ```
 
@@ -892,7 +892,7 @@ qcli listunspent 0 999990 \
   '["qSrs9VHVveZpiYojiaZc8VAz8JJFDu9y7o"]'
 ```
 
-There should be an UTXO created for this address with 7000 qtum:
+There should be an UTXO created for this address with 7000 recrypt:
 
 ```
 [

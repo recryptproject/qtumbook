@@ -1,14 +1,14 @@
 # UTXOs & Balances
 
-If you are a developer coming from Ethereum, the biggest practical difference is that QTUM's account model is built on Bitcoin's UTXOs.
+If you are a developer coming from Ethereum, the biggest practical difference is that RECRYPT's account model is built on Bitcoin's UTXOs.
 
 In Ethereum, you'd typically have an account with an unique address that holds a balance. You'd be sending/receiving money and interacting with Smart Contracts using one account.
 
-In QTUM, you don't really have accounts. Instead, you have a collection of UTXOs, each of which has its own address. An UTXO may be used only once when you send money or interact with a Smart Contract. If an UTXO has more value than you intend to use, it'd be splitted up into multiple UTXOs after a transaction.
+In RECRYPT, you don't really have accounts. Instead, you have a collection of UTXOs, each of which has its own address. An UTXO may be used only once when you send money or interact with a Smart Contract. If an UTXO has more value than you intend to use, it'd be splitted up into multiple UTXOs after a transaction.
 
 In this chapter we'll explore the UTXO model by sending some money using the `qcli` command, and peeking into the transaction data.
 
-Later in Part II we'll see how QTUM's Smart Contract implementation bridges Bitcoin's UTXO model with Ethereum's account model.
+Later in Part II we'll see how RECRYPT's Smart Contract implementation bridges Bitcoin's UTXO model with Ethereum's account model.
 
 # UTXO Address
 
@@ -69,7 +69,7 @@ qdiqg2mp646KhSQjVud3whv6C34hNHQnL2
 
 (You should replace the following commands with the address you've generated.)
 
-Next, send 10 qtums to this address:
+Next, send 10 recrypts to this address:
 
 ```
 qcli sendtoaddress qdiqg2mp646KhSQjVud3whv6C34hNHQnL2 10
@@ -84,11 +84,11 @@ A transaction ID (txid) is returned for this transfer:
 Wait for a minute or two for the transaction be be confirmed. You should see something like this in the container's log:
 
 ```
-07:25:54  qtumd | CTransaction(hash=11e790d26d, ver=2, vin.size=1, vout.size=2, nLockTime=1680)
-07:25:54  qtumd |     CTxIn(COutPoint(5ada2447bc, 1), scriptSig=473044022063b61ff64f6340, nSequence=4294967294)
-07:25:54  qtumd |     CScriptWitness()
-07:25:54  qtumd |     CTxOut(nValue=19979.99832800, scriptPubKey=76a914dc41025b0c419681bffc3446)
-07:25:54  qtumd |     CTxOut(nValue=10.00000000, scriptPubKey=76a914dd2c6512563e4274dafd8312)
+07:25:54  recryptd | CTransaction(hash=11e790d26d, ver=2, vin.size=1, vout.size=2, nLockTime=1680)
+07:25:54  recryptd |     CTxIn(COutPoint(5ada2447bc, 1), scriptSig=473044022063b61ff64f6340, nSequence=4294967294)
+07:25:54  recryptd |     CScriptWitness()
+07:25:54  recryptd |     CTxOut(nValue=19979.99832800, scriptPubKey=76a914dc41025b0c419681bffc3446)
+07:25:54  recryptd |     CTxOut(nValue=10.00000000, scriptPubKey=76a914dd2c6512563e4274dafd8312)
 ```
 
 Use `gettransaction` to get some general information about this transaction:
@@ -172,11 +172,11 @@ qcli listunspent 0 20
 Note that both of these UTXOs share the same txid. In other words, one send money transaction created two new UTXOs:
 
 + `qdiqg2mp646KhSQjVud3whv6C34hNHQnL2`: Receiving address, holding value of 10.
-+ `qddyh9oMU44qZ28bEY9WhCDbmCaALVDr1k`: The original sender UTXO had 20k qtum, the amount generated. This a new UTXO created to hold the change, minus fees.
++ `qddyh9oMU44qZ28bEY9WhCDbmCaALVDr1k`: The original sender UTXO had 20k recrypt, the amount generated. This a new UTXO created to hold the change, minus fees.
 
 ## Decoding Transaction Data
 
-We can dig a little deeper into the transaction data to see that QTUM really shares the same UTXO data structure as Bitcoin. From the earlier `gettransaction` output, we got the raw transaction data in hexadecimals (i.e. `02000000017d2...ac90060000`).
+We can dig a little deeper into the transaction data to see that RECRYPT really shares the same UTXO data structure as Bitcoin. From the earlier `gettransaction` output, we got the raw transaction data in hexadecimals (i.e. `02000000017d2...ac90060000`).
 
 Let's decode the transaction data:
 
@@ -241,4 +241,4 @@ As you can see, this is a [Pay-to-PubkeyHash](https://en.bitcoin.it/wiki/Transac
 
 # Summary
 
-QTUM manages money using Bitcoin's UTXO model. Instead of using accounts to track balances, a QTUM wallet keeps track of the collection of UTXOs. When a transaction is created, the wallet searches the collection to find UTXOs that add up to enough value to pay for the amount transferred and the fees.
+RECRYPT manages money using Bitcoin's UTXO model. Instead of using accounts to track balances, a RECRYPT wallet keeps track of the collection of UTXOs. When a transaction is created, the wallet searches the collection to find UTXOs that add up to enough value to pay for the amount transferred and the fees.
