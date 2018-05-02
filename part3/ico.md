@@ -110,7 +110,7 @@ Run recryptd in regtest mode:
 docker run -it --rm \
   --name myico \
   -v `pwd`:/dapp \
-  -p 3889:3889 \
+  -p 8489:8489 \
   -p 9899:9899 \
   -p 9888:9888 \
   hayeah/recryptportal

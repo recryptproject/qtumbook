@@ -501,7 +501,7 @@
   -v `pwd`:/dapp \
   -p 9899:9899 \
   -p 9888:9888 \
-  -p 3889:3889 \
+  -p 8489:8489 \
   hayeah/recryptportal</code></pre>
 <ul><li><code>--name</code> Name of the container. You can change this to whatever.
 </li>
@@ -559,7 +559,7 @@ blocks            db.log            fee_estimates.dat peers.dat         vm.log</
   -v `pwd`:/dapp \
   -p 9899:9899 \
   -p 9888:9888 \
-  -p 3889:3889 \
+  -p 8489:8489 \
   hayeah/recryptportal</code></pre>
 <h4 id="running-testnet"><a name="running-testnet" class="plugin-anchor" href="#running-testnet"><i class="fa fa-link" aria-hidden="true"></i></a>Running Testnet</h4><p>You can run on the test network by setting the RECRYPT_NETWORK environment variable inside the container, like so:</p><pre><code>docker run -it --rm \
   --name myapp \
@@ -567,12 +567,12 @@ blocks            db.log            fee_estimates.dat peers.dat         vm.log</
   -v `pwd`:/dapp \
   -p 9899:9899 \
   -p 9888:9888 \
-  -p 3889:3889 \
-  -p 13888:13888 \
+  -p 8489:8489 \
+  -p 18488:18488 \
   hayeah/recryptportal</code></pre>
 <h2 id="shell-access-into-the-container"><a name="shell-access-into-the-container" class="plugin-anchor" href="#shell-access-into-the-container"><i class="fa fa-link" aria-hidden="true"></i></a>Shell Access Into The Container</h2><p>Let&apos;s verify that the container is running:</p><pre><code>docker ps</code></pre>
 <pre><code>CONTAINER ID        IMAGE               COMMAND                  CREATED              STATUS              PORTS                                                                      NAMES
-72d7b2c22f97        hayeah/recryptportal   &quot;/bin/sh -c &apos;mkdir...&quot;   About a minute ago   Up About a minute   0.0.0.0:9888-&gt;9888/tcp, 0.0.0.0:9899-&gt;9899/tcp, 0.0.0.0:13889-&gt;13889/tcp   myapp</code></pre>
+72d7b2c22f97        hayeah/recryptportal   &quot;/bin/sh -c &apos;mkdir...&quot;   About a minute ago   Up About a minute   0.0.0.0:9888-&gt;9888/tcp, 0.0.0.0:9899-&gt;9899/tcp, 0.0.0.0:18489-&gt;18489/tcp   myapp</code></pre>
 <p>The container&apos;s name is <code>myapp</code>. We can gain shell access:</p><pre><code>docker exec -it myapp sh</code></pre>
 <p>The <code>/dapp</code> directory inside the container should be the same as your project directory.</p><p>Inside the container, we can use the <code>qcli</code> command to interact with recryptd. To get some basic info about the blockchain state:</p><pre><code>qcli getinfo
 
@@ -627,7 +627,7 @@ blocks            db.log            fee_estimates.dat peers.dat         vm.log</
   -v `pwd`:/dapp \
   -p 9899:9899 \
   -p 9888:9888 \
-  -p 3889:3889 \
+  -p 8489:8489 \
   hayeah/recryptportal</code></pre>
 <p>To shell into the container:</p><pre><code>docker exec -it myapp sh</code></pre>
 <p>Once inside the container, use <code>qcli</code> to interact with recryptd, for example:</p><pre><code>qcli getinfo</code></pre>

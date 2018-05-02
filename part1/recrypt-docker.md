@@ -26,7 +26,7 @@ docker run -it --rm \
   -v `pwd`:/dapp \
   -p 9899:9899 \
   -p 9888:9888 \
-  -p 3889:3889 \
+  -p 8489:8489 \
   hayeah/recryptportal
 ```
 
@@ -100,7 +100,7 @@ docker run -it --rm \
   -v `pwd`:/dapp \
   -p 9899:9899 \
   -p 9888:9888 \
-  -p 3889:3889 \
+  -p 8489:8489 \
   hayeah/recryptportal
 ```
 
@@ -115,8 +115,8 @@ docker run -it --rm \
   -v `pwd`:/dapp \
   -p 9899:9899 \
   -p 9888:9888 \
-  -p 3889:3889 \
-  -p 13888:13888 \
+  -p 8489:8489 \
+  -p 18488:18488 \
   hayeah/recryptportal
 ```
 
@@ -130,7 +130,7 @@ docker ps
 
 ```
 CONTAINER ID        IMAGE               COMMAND                  CREATED              STATUS              PORTS                                                                      NAMES
-72d7b2c22f97        hayeah/recryptportal   "/bin/sh -c 'mkdir..."   About a minute ago   Up About a minute   0.0.0.0:9888->9888/tcp, 0.0.0.0:9899->9899/tcp, 0.0.0.0:13889->13889/tcp   myapp
+72d7b2c22f97        hayeah/recryptportal   "/bin/sh -c 'mkdir..."   About a minute ago   Up About a minute   0.0.0.0:9888->9888/tcp, 0.0.0.0:9899->9899/tcp, 0.0.0.0:18489->18489/tcp   myapp
 ```
 
 The container's name is `myapp`. We can gain shell access:
@@ -237,7 +237,7 @@ docker run -it --rm \
   -v `pwd`:/dapp \
   -p 9899:9899 \
   -p 9888:9888 \
-  -p 3889:3889 \
+  -p 8489:8489 \
   hayeah/recryptportal
 ```
 

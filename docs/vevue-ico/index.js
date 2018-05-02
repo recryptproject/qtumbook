@@ -3,7 +3,7 @@ const BN = require("bn.js")
 
 const repoData = require("./solar.development.json")
 
-const recrypt = new Recrypt("http://recrypt:test@localhost:3889", repoData)
+const recrypt = new Recrypt("http://recrypt:test@localhost:8489", repoData)
 
 const mytoken = recrypt.contract("VevueToken.sol")
 

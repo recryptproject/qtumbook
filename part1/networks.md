@@ -13,12 +13,12 @@ docker run -it --rm \
   -v `pwd`:/dapp \
   -p 9899:9899 \
   -p 9888:9888 \
-  -p 3889:3889 \
-  -p 13888:13888 \
+  -p 8489:8489 \
+  -p 18488:18488 \
   hayeah/recryptportal
 ```
 
-* `-p 13888:13888` is the p2p port for the testnet, so other nodes can connect to you.
+* `-p 18488:18488` is the p2p port for the testnet, so other nodes can connect to you.
 
 It takes some time to download the blockchain data from the network. You'll see log messages like this stream by:
 
